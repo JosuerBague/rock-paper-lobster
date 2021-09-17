@@ -40,16 +40,41 @@ function playRPS(){
   if(playerSelection === computerSelection){
     result = 'draw'
   } else if(playerSelection === 'rock'){
-    computerSelection === 'scissors' ? result = 'lose' : result = 'win';  
+    computerSelection === 'scissors' ? result = 'win' : result = 'lose';  
   } else if(playerSelection === 'paper'){
-    computerSelection === 'rock' ? result = 'lose' : result ='win';
+    computerSelection === 'rock' ? result = 'win' : result ='lose';
   } else {
-    computerSelection === 'scissors' ? result = 'lose' : result ='win'
+    computerSelection === 'paper' ? result = 'win' : result ='lose'
   }
 
-  return console.log(announcer(playerSelection, computerSelection, result));
+  console.log(announcer(playerSelection, computerSelection, result));
+  return result;
+}
+
+function game(){
+  let counterHuman = 0;
+  let counterComp = 0;
+
+  while(counterHuman < 5 && counterComp < 5){
+    let roundResult = playRPS();
+    if(roundResult==='win'){
+      counterHuman++
+    }
+    if(roundResult === 'lose'){
+    counterComp++
+    }
+    console.log(`Score- player: ${counterHuman} computer: ${counterComp}`);
+  }
+
+  if(counterHuman === 5){
+    console.log("You win!")
+    return
+  } else if(counterComp === 5){
+    console.log("You Lose!")
+    return
+  }
 }
 
 
 let compPlays = document.querySelector('.compPlays');
-compPlays.addEventListener('click', playRPS);
+compPlays.addEventListener('click', game);
