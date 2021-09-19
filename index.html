@@ -11,15 +11,21 @@
 </head>  
 <body>
   <div id="scoreboard">
-    <div id="humanScoreCard" class="scoreCard"></div>
-    <div id="compScoreCard" class="scoreCard"></div>
+    <div id="humanScoreCard" class="scoreCard">0</div>
+    <div id="compScoreCard" class="scoreCard">0</div>
   </div>
+  
   <div id="display"></div>
 
   <div id="choices">
-    <button id="rock" class="button" value="rock">Rock</button>
-    <button id="paper" class="button" value="paper">Paper</button>
-    <button id="scissors" class="button" value="scissors">Scissors</button>
+    <button id="rock" class="button choice" value="rock">Rock</button>
+    <button id="paper" class="button choice" value="paper">Paper</button>
+    <button id="scissors" class="button choice" value="scissors">Scissors</button>
+  </div>
+
+  <div id="menu">
+    <button id="playGame" class="button menu">New Game</button>
+    <button id="quitGame" class="button menu">Quit Game</button>
   </div>
 
   <script src="assets/js/main.js"></script>

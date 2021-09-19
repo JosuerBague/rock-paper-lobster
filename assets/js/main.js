@@ -5,8 +5,8 @@ const compScoreCard = document.querySelector('#compScoreCard')
 let counterHuman = document.createElement('span');
 let counterComp = document.createElement('span');
 
-scoreHuman = 0;
-scoreComp = 0;
+let scoreHuman = 0;
+let scoreComp = 0;
 
 function scoreKeeper(result){
 
@@ -91,30 +91,31 @@ function playRPS(e){
   return result;
 }
 
-// function game(){
-//   let counterHuman = 0;
-//   let counterComp = 0;
+const newGameBtn = document.querySelector('#playGame');
+const quitGame = document.querySelector('#quitGame') 
+const choiceBtns = document.querySelectorAll('.choice');
 
-//   while(counterHuman < 5 && counterComp < 5){
-//     let roundResult = playRPS();
-//     if(roundResult==='win'){
-//       counterHuman++
-//     }
-//     if(roundResult === 'lose'){
-//     counterComp++
-//     }
-//     console.log(`Score- player: ${counterHuman} computer: ${counterComp}`);
-//   }
+choiceBtns.forEach(choiceBtn => choiceBtn.addEventListener('click', playRPS));
 
-//   if(counterHuman === 5){
-//     console.log("You win!")
-//     return
-//   } else if(counterComp === 5){
-//     console.log("You Lose!")
-//     return
-//   }
-// }
+newGameBtn.addEventListener('click', newGame);
+// quitGame.addEventListener('click', quitGame());
 
-const buttons = document.querySelectorAll('.button');
+function newGame(){
+  scoreHuman = 0;
+  scoreComp = 0;
 
-buttons.forEach(button => button.addEventListener('click', playRPS));
+  counterHuman.textContent = scoreHuman;
+  counterComp.textContent = scoreComp;
+
+  if(humanScoreCard.hasChildNodes()){
+    humanScoreCard.removeChild(humanScoreCard.firstChild);
+  }
+
+  if(compScoreCard.hasChildNodes()){
+    compScoreCard.removeChild(compScoreCard.firstChild);
+  }
+
+  humanScoreCard.appendChild(counterHuman);
+  compScoreCard.appendChild(counterComp);
+
+}
