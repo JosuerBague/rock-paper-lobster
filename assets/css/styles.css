@@ -1,0 +1,76 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1 1 auto;
+}
+
+html {
+  background-color: lightblue;
+}
+
+#scoreboard {
+  border: 1px solid black;
+  border-radius: 25px;
+  background-color: antiquewhite;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 50%;
+  min-width: 100px;
+  height: 200px;
+}
+
+#choices {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+}
+#menu {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  gap: 3em;
+}
+
+#scoreboard, #choices, #menu, #display {
+  margin-bottom: 1em;
+}
+
+#display {
+  border: 1px solid black;
+  padding: 2em;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.scoreCard {
+  max-width: 100px;
+  border-radius: 5px;
+  background-color: pink;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  font-size: 2em;
+}
+
+.button {
+  padding: 1em 1.5em;
+  border-radius: 5px;
+  border: none;
+  min-width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
