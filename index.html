@@ -6,16 +6,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rock-Paper-Scissors</title>
 
-  <style>
-    .compPlays{
-      padding: 1em;
-    }
-  </style>
+    <link rel="stylesheet" href="assets/css/styles.css">
+ 
 </head>  
 <body>
+  <div id="scoreboard">
+    <div id="scorePlayer" class="scoreCounter"></div>
+    <div id="scoreHuman" class="scoreCounter"></div>
+  </div>
+  <div id="display"></div>
 
-  <button class="compPlays">play RPS</button>
-  
+  <div id="choices">
+    <button id="rock" class="button" value="rock">Rock</button>
+    <button id="paper" class="button" value="paper">Paper</button>
+    <button id="scissors" class="button" value="scissors">Scissors</button>
+  </div>
+
   <script src="assets/js/main.js"></script>
 </body>
 </html>
