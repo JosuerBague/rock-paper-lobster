@@ -1,10 +1,42 @@
-const compChoices = ['rock','paper','scissors']
+const compChoices = ['rock','paper','scissors'];
+const humanScoreCard = document.querySelector('#humanScoreCard');
+const compScoreCard = document.querySelector('#compScoreCard')
 
+let counterHuman = document.createElement('span');
+let counterComp = document.createElement('span');
+
+scoreHuman = 0;
+scoreComp = 0;
+
+function scoreKeeper(result){
+
+  if(result==='draw'){
+      return
+  } else if(result==='win'){
+      scoreHuman++
+      counterHuman.textContent = scoreHuman;
+      if(humanScoreCard.hasChildNodes()){
+        humanScoreCard.removeChild(humanScoreCard.firstChild);
+      }
+      humanScoreCard.appendChild(counterHuman);
+  } else {
+      scoreComp++
+      counterComp.textContent = scoreComp;
+      if(compScoreCard.hasChildNodes()){
+        compScoreCard.removeChild(compScoreCard.firstChild)
+      }
+      compScoreCard.appendChild(counterComp);
+  }
+
+}
+
+// computer's game input
 function computerPlay(){
   let pickRandom = Math.floor(Math.random() * compChoices.length);
   return compChoices[pickRandom];
 }
 
+// Changes inputs to TitleCase
 function titleCase(text){
   let firstChar = text.substr(0,1).toUpperCase();
   let restOfString = text.substr(1);
@@ -12,6 +44,7 @@ function titleCase(text){
   return firstChar.concat(restOfString);
 }
 
+// Display's round result
 function displayer(playerSelection, computerSelection, result){
   let display = document.querySelector('#display');
   let displayPar = document.createElement('p');
@@ -36,6 +69,7 @@ function displayer(playerSelection, computerSelection, result){
   return
 }
 
+// Plays one round of rock paper scissors
 function playRPS(e){
   console.log(e);
   let playerSelection = e.target.value;
@@ -52,7 +86,8 @@ function playRPS(e){
     computerSelection === 'paper' ? result = 'win' : result ='lose'
   }
 
-  console.log(displayer(playerSelection, computerSelection, result));
+  displayer(playerSelection, computerSelection, result);
+  scoreKeeper(result);
   return result;
 }
 
