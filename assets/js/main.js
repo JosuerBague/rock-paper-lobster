@@ -1,9 +1,85 @@
 const compChoices = ['rock','paper','scissors'];
-const humanScoreCard = document.querySelector('#humanScoreCard');
-const compScoreCard = document.querySelector('#compScoreCard')
 
-let counterHuman = document.createElement('span');
-let counterComp = document.createElement('span');
+// #Start UI Variables
+  const startUI = document.querySelector('#start-ui');
+  const startGameBtn = document.querySelector('#start-game-btn');
+
+  startGameBtn.addEventListener('click', startGame);
+
+  function startGame(){
+    toggleGameState();
+    return
+  }
+
+  function toggleGameState(){
+    startUI.classList.toggle('hidden');
+    mainGame.classList.toggle('hidden');
+  }
+
+// #Main Game UI Variables
+  // Displayers
+  const mainGame = document.querySelector('#main-game');
+  const announcer = document.querySelector('#display__announcer')
+
+  // Human
+  const humanChoiceCard = document.querySelector('#human-choice__card');
+  const humanScore = document.querySelector('human-score')
+
+  // Comp
+  const compChoiceCard = document.querySelector('#comp-choice__card');
+  const compScore = document.querySelector('#comp-score')
+
+  // Choices & Btns
+  const choiceBtns = document.querySelectorAll('.choice');
+  const newGameBtn = document.querySelector("#new-game-btn");
+  const quitBtn = document.querySelector('#quit-btn');
+
+  choiceBtns.forEach(choice => choice.addEventListener('click', playRPS));
+  newGameBtn.addEventListener('click', newGame);
+  quitBtn.addEventListener('click', quitGame);
+
+  function quitGame(){
+    modalQuit.classList.toggle('modal-active');
+    return
+  }
+    
+
+  
+// #Modals
+  const modalWin = document.querySelector('#modal-win');
+  const modalLose = document.querySelector('#modal-lose');
+  const modalThanks = document.querySelector('#modal-thanks');
+  const modalQuit = document.querySelector('#modal-quit');
+
+  // Modal Btns
+  const playAgainBtns = document.querySelectorAll('.play-again');
+  const exitGameBtns = document.querySelectorAll('.exit-game');
+  const confirmExitBtn = document.querySelector('.quit-yes');
+  const declineExitBtn = document.querySelector('.quit-no');
+
+  // playAgainBtns.forEach(playAgainBtn => {
+  //   playAgainBtn.addEventListener('click', playAgain)
+  // });
+
+  // exitGameBtns.forEach(exitGameBtn => {
+  //   exitGameBtn.addEventListener('click', exitGame);
+  // })
+
+  confirmExitBtn.addEventListener('click', confirmExit);
+  // declineExitBtn.addEventListener('click', declineExit);
+
+  function confirmExit(){
+    modalQuit.classList.toggle('modal-active');
+    modalThanks.classList.toggle('modal-active');
+
+    setTimeout(function(){
+      modalThanks.classList.toggle('modal-active')
+      toggleGameState();
+    }, 5000);
+
+    return
+  }
+
 
 let scoreHuman = 0;
 let scoreComp = 0;
@@ -39,7 +115,7 @@ function computerPlay(){
 // Changes inputs to TitleCase
 function titleCase(text){
   let firstChar = text.substr(0,1).toUpperCase();
-  let restOfString = text.substr(1);
+  let restOfString = text.substr(1);  
 
   return firstChar.concat(restOfString);
 }
@@ -91,15 +167,6 @@ function playRPS(e){
   return result;
 }
 
-const newGameBtn = document.querySelector('#playGame');
-const quitGame = document.querySelector('#quitGame') 
-const choiceBtns = document.querySelectorAll('.choice');
-
-choiceBtns.forEach(choiceBtn => choiceBtn.addEventListener('click', playRPS));
-
-newGameBtn.addEventListener('click', newGame);
-// quitGame.addEventListener('click', quitGame());
-
 function newGame(){
   scoreHuman = 0;
   scoreComp = 0;
@@ -122,11 +189,11 @@ function newGame(){
 
 // EXPERIMENTAL
 
-const startGame = document.querySelector('.startGame');
-const startUI = document.querySelector('.startUI');
-const mainGame = document.querySelector('.mainGame');
+// const startGame = document.querySelector('.startGame');
+// const startUI = document.querySelector('.startUI');
+// const mainGame = document.querySelector('.mainGame');
 
-startGame.addEventListener('click', function(){
-  startUI.classList.toggle('hidden');
-  mainGame.classList.toggle('hidden');
-})
+// startGame.addEventListener('click', function(){
+  // startUI.classList.toggle('hidden');
+  // mainGame.classList.toggle('hidden');
+// })

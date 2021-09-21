@@ -51,7 +51,7 @@ html {
 
 /* startUI */
 
-.startUI {
+.start-ui {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -60,13 +60,13 @@ html {
   padding-top: 8em;
 }
 
-.startUI .gameTitle{
+.start-ui .game-title{
   font-family: 'SF Fedora';
   font-size: 60px;
   margin-bottom: 2em;
 }
 
-.startChoices{
+.start-choices{
   height: 50%;
   width: 100%;
   display:flex;
@@ -75,25 +75,25 @@ html {
   padding: 0 10em;
 }
 
-.startChoice{
+.start-choice{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.startChoice span {
+.start-choice span {
   font-family: 'SF Fedora';
   font-size: 28px;
   letter-spacing: 5px;
 }
 
 
-.startPaper {
+.start-paper {
   align-self: flex-start;
 }
 
-.startChoice .startImg{
+.start-choice .start-img{
   width: 200px;
   height: 200px;
   background-color: #f4f4f4;
@@ -105,11 +105,11 @@ html {
   margin-bottom: 2em;
 }
 
-.startImg img{
+.start-img img{
   width: 90%;
 }
 
-.startUI .startGame{
+.start-ui .start-game-btn{
   border: none;
   display: flex;
   justify-content: center;
@@ -119,11 +119,11 @@ html {
   cursor: pointer;
 }
 
-.startUI .startGame:hover{
+.start-ui .start-game-btn:hover{
   background-color: #b6362a;
 }
 
-.startUI .startGame span{
+.start-ui .start-game-btn span{
   font-family: 'Arya';
   font-weight: bold;
   font-size: 30px;
@@ -134,13 +134,33 @@ html {
 
 /* ############################## MAIN GAME ########################### */
 
-.mainGame{
+.main-game{
   height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.quit-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding:0.5em;
+  border: none;
+  background-color: #903B33;
+  border-radius: 5px;
+  margin-left: auto;
+  margin-right: 50px;
+  margin-bottom: 2em;
+}
+
+.quit-btn:hover{
+  background-color: #b6362a;
+}
+.quit-btn img{
+  width: 80%;
 }
 
 .display{
@@ -160,14 +180,14 @@ html {
   border-radius: 15px;
 }
 
-.display__compChoice, .display__humanChoice{
+.display__comp-choice, .display__human-choice{
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
 }
 
-.display__humanChoice::before, .display__compChoice::before{
+.display__human-choice::before, .display__comp-choice::before{
   content: 'You';
   font-family: 'Arya';
   font-weight: bold;
@@ -175,7 +195,7 @@ html {
   position: absolute;
 }
 
-.display__compChoice::before{
+.display__comp-choice::before{
   content: 'Computer'
 }
 
@@ -217,7 +237,7 @@ html {
 
 }
 
-.button.choice{
+.button.choice, .menu{
   min-width: 150px;
 }
 
@@ -229,10 +249,118 @@ html {
 
 .menu{
   display: flex;
-  gap: 1.5em;
+  justify-content: center;
+  align-items: center;
 }
 
+/* ################################## MODALS ############################### */
 
+.modal-bg{
+  position:fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s opacity 0.5s;
+}
+
+.modal-bg.modal-active{
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal{
+  background-color: #f4f4f4;
+  width: 50%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 3em;
+  border-radius: 10px;
+}
+
+.modal span {
+  font-family: 'Arya';
+  font-size: 24px;
+}
+
+.modal span:nth-child(3){
+  font-family: 'SF Fedora';
+  font-size: 48px;
+  margin: 1.5em 0;
+}
+
+.modal .modal-btns{
+  display: flex;
+  gap: 4em;
+}
+
+.modal-btns button{
+  border: none;
+  background-color: #903b33;
+  color: #f4f4f4;
+  border-radius: 5px;
+  padding: 0.5em 1.5em;
+}
+
+.modal-btns button:hover{
+  background-color: #b6362a;
+}
+
+.modal-thanks .modal{
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-thanks span {
+  font-family: 'SF Fedora';
+  font-size: 48px;
+}
+
+.modal-quit{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-quit .modal{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.modal-quit .modal > span{
+  font-family: 'Arya';
+  font-size: 40px;
+}
+
+.modal-quit .confirm-btns{
+  display: flex;
+  gap: 2em
+}
+.modal-quit button{
+  background-color: #903B33;
+  border: none;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  min-width: 100px;
+  color: #f4f4f4;
+}
+
+.modal-quit button:hover{
+  background-color: #b6362a;
+}
+
+/*  */
 .hidden {
   display: none !important;
 }
