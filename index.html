@@ -10,24 +10,134 @@
  
 </head>  
 <body>
-  <div id="scoreboard">
-    <div id="humanScoreCard" class="scoreCard">0</div>
-    <div id="compScoreCard" class="scoreCard">0</div>
-  </div>
-  
-  <div id="display"></div>
+  <div id="container">
 
-  <div id="choices">
-    <button id="rock" class="button choice" value="rock">Rock</button>
-    <button id="paper" class="button choice" value="paper">Paper</button>
-    <button id="scissors" class="button choice" value="scissors">Scissors</button>
-  </div>
+    <div id="start-ui" class="start-ui">
+      <h1 class="game-title">The Bizzarre World of</h1>
+      <!--  -->
+      <div class="start-choices">
+        <!--  -->
+        <div class="start-rock start-choice">
+          <div class="start-img">
+            <img src="/assets/img/rockf.png" alt="Rock with boxing gloves and leaves for hair.">
+          </div>
+          <span>Rock</span>
+        </div>
+        <!--  -->
+        <div class="start-paper start-choice">
+          <div class="start-img">
+            <img src="/assets/img/paperf.png" alt="Paper with shield and face.">
+          </div>
+          <span>Paper</span>
+        </div>
+        <!--  -->
+        <div class="start-lobster start-choice">
+          <div class="start-img">
+            <img src="/assets/img/lobsterf.png" alt="A lobster.">
+          </div>
+          <span>Lobster</span>
+        </div>
+      </div>
+      <!--  -->
+      <button id="start-game-btn" class="start-game-btn">
+        <span>Start Game</span>
+      </button>
+    </div>
+    <!--  -->
 
-  <div id="menu">
-    <button id="playGame" class="button menu">New Game</button>
-    <button id="quitGame" class="button menu">Quit Game</button>
-  </div>
+    <div id="main-game" class="main-game hidden">
+      <button id="quit-btn" class="quit-btn">
+        <img src="/assets/img/exit-vector.svg" alt="Exit Button">
+      </button>
+      <!--  -->
+      <div id="display" class="display">
+        <!--  -->
+        <div id="display__human-choice" class="display__human-choice">
+          <div id="human-choice__card" class="card_choice"></div>
+          <span id="human-score" class="score">0</span>
+        </div>
+        <!--  -->
+        <div id="display__announcer" class="display__announcer"></div>
+        <!--  -->
+        <div id="display__comp-choice" class="display__comp-choice">
+          <div id="comp-choice__card" class="card_choice"></div>
+          <span id="comp-score" class="score">0</span>
+        </div>
+      </div>
+      
 
+      <div id="choices" class="choices">
+        <button id="rock-choice-btn" class="button choice" value="rock">
+          <span>Rock</span>
+        </button>
+        <button id="paper-choice-btn" class="button choice" value="paper">
+          <span>Paper</span>  
+        </button>
+        <button id="lobster-choice-btn" class="button choice" value="lobster">
+          <span>Lobster</span>
+        </button>
+      </div>
+
+      <div id="menu" class="menu">
+        <button id="new-game-btn" class="button menu">
+          <span>New Game</span>
+        </button>
+      </div>
+
+      <div id="modal-win" class="modal-win modal-bg">
+        <div class="modal">
+          <span>Congratulations! You beat the Computer!</span>
+          <span>You claim the title of</span>
+          <span>King of Bizarre</span>
+          <div class="modal-btns">
+            <button id="play-again-btn" class="play-again">
+              <span>Play Again</span>
+            </button>
+            <button id="exit-game-btn" class="exit-game">
+              <span>Exit Game</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!--  -->
+
+      <div id="modal-lose" class="modal-lose modal-bg">
+        <div class="modal">
+          <span>You Lose. Hurry, call the Terminator!</span>
+          <span>You are granted the title of:</span>
+          <span>Normie</span>
+          <div class="modal-btns">
+            <button id="play-again-btn" class="play-again">
+              <span>Play Again</span>
+            </button>
+            <button id="exit-game-btn" class="exit-game">
+              <span>Exit Game</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!--  -->
+
+      <div id="modal-thanks" class="modal-thanks modal-bg">
+        <div class="modal">
+          <span>Thanks for playing!</span>
+        </div>
+      </div>
+
+      <div id="modal-quit" class="modal-quit modal-bg">
+        <div class="modal">
+          <span>Are you sure you want to quit?</span>
+          <div class="confirm-btns">
+            <button id="quit-yes" class="quit-yes">
+              <span>Yes</span>
+            </button>
+            <button id="quit-no" class="quit-no">
+              <span>No</span>
+            </button></div>
+        </div>
+      </div>
+    </div>
+  </div>
   <script src="assets/js/main.js"></script>
 </body>
 </html>
