@@ -119,3 +119,14 @@ function newGame(){
   compScoreCard.appendChild(counterComp);
 
 }
+
+// EXPERIMENTAL
+
+const startGame = document.querySelector('.startGame');
+const startUI = document.querySelector('.startUI');
+const mainGame = document.querySelector('.mainGame');
+
+startGame.addEventListener('click', function(){
+  startUI.classList.toggle('hidden');
+  mainGame.classList.toggle('hidden');
+})

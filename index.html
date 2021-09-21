@@ -10,24 +10,81 @@
  
 </head>  
 <body>
-  <div id="scoreboard">
-    <div id="humanScoreCard" class="scoreCard">0</div>
-    <div id="compScoreCard" class="scoreCard">0</div>
-  </div>
-  
-  <div id="display"></div>
+  <div id="container">
 
-  <div id="choices">
-    <button id="rock" class="button choice" value="rock">Rock</button>
-    <button id="paper" class="button choice" value="paper">Paper</button>
-    <button id="scissors" class="button choice" value="scissors">Scissors</button>
-  </div>
+    <div id="startUI" class="startUI hidden">
+      <h1 class="gameTitle">The Bizzarre World of</h1>
+      <!--  -->
+      <div class="startChoices">
+        <!--  -->
+        <div class="startRock startChoice">
+          <div class="startImg">
+            <img src="/assets/img/rockf.png" alt="">
+          </div>
+          <span>Rock</span>
+        </div>
+        <!--  -->
+        <div class="startPaper startChoice">
+          <div class="startImg">
+            <img src="/assets/img/paperf.png" alt="">
+          </div>
+          <span>Paper</span>
+        </div>
+        <!--  -->
+        <div class="startLobster startChoice">
+          <div class="startImg">
+            <img src="/assets/img/lobsterf.png" alt="">
+          </div>
+          <span>Lobster</span>
+        </div>
+      </div>
+      <!--  -->
+      <button id="btnStartGame" class="startGame">
+        <span>Start Game</span>
+      </button>
+    </div>
+    <!--  -->
 
-  <div id="menu">
-    <button id="playGame" class="button menu">New Game</button>
-    <button id="quitGame" class="button menu">Quit Game</button>
-  </div>
+    <div id="mainGame" class="mainGame">
+      <!--  -->
+      <div id="display" class="display">
+        <!--  -->
+        <div id="display__humanChoice" class="display__humanChoice">
+          <div id="humanChoice__card" class="card_choice"></div>
+          <span id="humanScore" class="score">0</span>
+        </div>
+        <!--  -->
+        <div id="display__announcer" class="display__announcer"></div>
+        <!--  -->
+        <div id="display__compChoice" class="display__compChoice">
+          <div id="compChoice__card" class="card_choice"></div>
+          <span id="compScore" class="score">0</span>
+        </div>
+      </div>
+      
 
+      <div id="choices" class="choices">
+        <button id="rock" class="button choice" value="rock">
+          <span>Rock</span>
+        </button>
+        <button id="paper" class="button choice" value="paper">
+          <span>Paper</span>  
+        </button>
+        <button id="lobster" class="button choice" value="lobster">
+          <span>Lobster</span>
+        </button>
+      </div>
+
+      <div id="menu" class="menu">
+        <button id="newGame" class="button menu">
+          <span>New Game</span>
+        </button>
+        <button id="quitGame" class="button menu">
+          <span>Quit Game</span>
+        </button>
+      </div>
+    </div>
+  </div>
   <script src="assets/js/main.js"></script>
 </body>
 </html>
