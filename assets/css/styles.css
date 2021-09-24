@@ -136,30 +136,55 @@ html {
 
 .main-game{
   height: 100%;
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  overflow: hidden;
+  border: 1px solid black;
 }
 
-.quit-btn{
+.border{
+  border: 1px solid black;
+}
+
+.exit-reset-btn-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+  align-self: flex-end;
+  margin: 1em 0;
+  width: 80%;
+  max-width: 100px;
+  border: 1px solid black;
+}
+
+.quit-btn,
+.reset-btn {
   display: flex;
   justify-content: center;
   align-items: center;
   padding:0.5em;
-  border: none;
-  background-color: #903B33;
+  border: 1px solid rgba(0,0,0,0.1);
+  background-color: rgba(51,144,105,1);
   border-radius: 5px;
-  margin-left: auto;
-  margin-right: 50px;
-  margin-bottom: 2em;
+  min-height: 42px;
+  min-width: 42px;
 }
 
-.quit-btn:hover{
-  background-color: #b6362a;
+.quit-btn{
+  background-color: rgb(214, 44, 28);
 }
-.quit-btn img{
+.quit-btn:hover{
+  background-color: rgba(255,55,36,1)
+}
+
+.reset-btn:hover{
+  background-color: rgb(56, 167, 120);
+}
+.quit-btn img,
+.reset-btn img {
   width: 80%;
 }
 
@@ -167,39 +192,60 @@ html {
   display: flex;
   align-items: center;
   gap: 4em;
+  margin-bottom: 1.5em;
 }
 
 .display__announcer{
-  min-width: 500px;
-  border: 1px solid black;
-}
-.card_choice{
-  background-color: #f4f4f4;
-  width: 350px;
-  height: 500px;
+  min-height: 200px;
+  width: 100%;
   border-radius: 15px;
+  border: 1px solid rgba(0,0,0,0.0.0.5);
+  background-color: rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-items: center;
+  backdrop-filter: blur(10px);
 }
 
-.display__comp-choice, .display__human-choice{
+.display__announcer p{
+  font-family: 'Arya';
+  font-size: 30px;
+}
+
+
+.display__comp-choice-group, 
+.display__human-choice-group{
+  padding-top: 1em;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
+  background-color: #f4f4f4;
+  width: 350px;
+  height: 450px;
+  border-radius: 15px;
 }
 
-.display__human-choice::before, .display__comp-choice::before{
+.display__human-choice-group::before, 
+.display__comp-choice-group::before{
   content: 'You';
   font-family: 'Arya';
   font-weight: bold;
   font-size: 48px;
   position: absolute;
+  top: 0.5em;
+  line-height: 0;
 }
 
-.display__comp-choice::before{
+.display__comp-choice-group::before{
   content: 'Computer'
 }
 
 .card_choice{
+  width: 350px;
+  height: 480px;
+  
   background-image: none;
   background-size: contain;
   background-repeat: no-repeat;
@@ -211,8 +257,9 @@ html {
   font-family: 'Arya';
   font-weight: bold;
   font-size: 48px;
-  color: yellow;
-  backdrop-filter: blur(1px);
+  color: #424242;
+  align-self: flex-end;
+  margin-right: 0.5em;
 }
 
 /* Main Game Buttons */
@@ -237,21 +284,29 @@ html {
 
 }
 
-.button.choice, .menu{
+.button.choice{
   min-width: 150px;
 }
 
-.choices{
-  display: flex;
-  gap: 2em;
-  margin-bottom: 0.5em;
-}
-
-.menu{
+.choice-btns{
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 1em;
+  position: absolute;
+  bottom: 1em;
+  left: 0;
+  right: 0;
 }
+.choices{
+  width: 80%;
+  display: flex;
+  gap: 2em;
+  margin-bottom: 0.5em;
+  position: relative;
+}
+
+
 
 /* ################################## MODALS ############################### */
 
@@ -363,4 +418,8 @@ html {
 /*  */
 .hidden {
   display: none !important;
+}
+
+button span{
+  pointer-events: none  ;
 }

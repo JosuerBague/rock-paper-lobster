@@ -1,60 +1,75 @@
-const compChoices = ['rock','paper','scissors'];
 
-// #Start UI Variables
-  const startUI = document.querySelector('#start-ui');
+
+
+
+
+// #Start Game Btn
   const startGameBtn = document.querySelector('#start-game-btn');
-
   startGameBtn.addEventListener('click', startGame);
 
   function startGame(){
-    toggleGameState();
-    return
-  }
+    const startUI = document.querySelector('#start-ui');
+    const mainGame = document.querySelector('#main-game');
 
-  function toggleGameState(){
     startUI.classList.toggle('hidden');
     mainGame.classList.toggle('hidden');
   }
 
+  
+
 // #Main Game UI Variables
   // Displayers
-  const mainGame = document.querySelector('#main-game');
-  const announcer = document.querySelector('#display__announcer')
+  const announcer = document.querySelector('#display__announcer');
 
   // Human
-  const humanChoiceCard = document.querySelector('#human-choice__card');
-  const humanScore = document.querySelector('human-score')
+  
 
   // Comp
-  const compChoiceCard = document.querySelector('#comp-choice__card');
-  const compScore = document.querySelector('#comp-score')
+  
 
   // Choices & Btns
   const choiceBtns = document.querySelectorAll('.choice');
-  const newGameBtn = document.querySelector("#new-game-btn");
-  const quitBtn = document.querySelector('#quit-btn');
+  // const newGameBtn = document.querySelector("#new-game-btn");
 
   choiceBtns.forEach(choice => choice.addEventListener('click', playRPS));
-  newGameBtn.addEventListener('click', newGame);
-  quitBtn.addEventListener('click', quitGame);
+  // newGameBtn.addEventListener('click', newGame);
 
-  function quitGame(){
+
+  const quitBtn = document.querySelector('#quit-btn');
+  quitBtn.addEventListener('click', function quitGame(){
+    const modalQuit = document.querySelector('#modal-quit');
     modalQuit.classList.toggle('modal-active');
-    return
-  }
-    
+  });
+  
+  const confirmExitBtn = document.querySelector('#quit-yes');
+  confirmExitBtn.addEventListener('click', function confirmExit(){
+
+    const modalQuit = document.querySelector('#modal-quit');
+    const modalThanks = document.querySelector('#modal-thanks');
+    const startUI = document.querySelector('#start-ui');
+    const mainGame = document.querySelector('#main-game');
+
+    modalQuit.classList.toggle('modal-active');
+    modalThanks.classList.toggle('modal-active');
+
+    setTimeout(function resetGame(){
+      modalThanks.classList.toggle('modal-active');
+      startUI.classList.toggle('hidden');
+      mainGame.classList.toggle('hidden');
+    }, 5000);
+  });
+
+
+
 
   
 // #Modals
   const modalWin = document.querySelector('#modal-win');
   const modalLose = document.querySelector('#modal-lose');
-  const modalThanks = document.querySelector('#modal-thanks');
-  const modalQuit = document.querySelector('#modal-quit');
 
   // Modal Btns
   const playAgainBtns = document.querySelectorAll('.play-again');
   const exitGameBtns = document.querySelectorAll('.exit-game');
-  const confirmExitBtn = document.querySelector('.quit-yes');
   const declineExitBtn = document.querySelector('.quit-no');
 
   // playAgainBtns.forEach(playAgainBtn => {
@@ -65,49 +80,58 @@ const compChoices = ['rock','paper','scissors'];
   //   exitGameBtn.addEventListener('click', exitGame);
   // })
 
-  confirmExitBtn.addEventListener('click', confirmExit);
-  // declineExitBtn.addEventListener('click', declineExit);
+  declineExitBtn.addEventListener('click', declineExit);
 
-  function confirmExit(){
+  function declineExit(){
     modalQuit.classList.toggle('modal-active');
-    modalThanks.classList.toggle('modal-active');
-
-    setTimeout(function(){
-      modalThanks.classList.toggle('modal-active')
-      toggleGameState();
-    }, 5000);
-
     return
   }
 
-
-let scoreHuman = 0;
-let scoreComp = 0;
-
 function scoreKeeper(result){
+
+  let tallyHuman = parseInt(document.querySelector('#human-score')
+                   .firstElementChild.innerText);
+
+  let tallyComp = parseInt(document.querySelector('#comp-score')
+                  .firstElementChild.innerText);
+  
+  let score = document.createElement('span');
+
+  const humanScore = document.querySelector('#human-score'),
+        compScore = document.querySelector('#comp-score');
+
+
 
   if(result==='draw'){
       return
   } else if(result==='win'){
-      scoreHuman++
-      counterHuman.textContent = scoreHuman;
-      if(humanScoreCard.hasChildNodes()){
-        humanScoreCard.removeChild(humanScoreCard.firstChild);
+      tallyHuman++
+      score.textContent = tallyHuman;
+      
+      while(humanScore.hasChildNodes()){
+        humanScore.removeChild(humanScore.firstChild)
       }
-      humanScoreCard.appendChild(counterHuman);
-  } else {
-      scoreComp++
-      counterComp.textContent = scoreComp;
-      if(compScoreCard.hasChildNodes()){
-        compScoreCard.removeChild(compScoreCard.firstChild)
-      }
-      compScoreCard.appendChild(counterComp);
-  }
 
+      humanScore.appendChild(score);
+      
+  } else {
+      tallyComp++
+      score.textContent = tallyComp;
+      
+      while(compScore.hasChildNodes()){
+        compScore.removeChild(compScore.firstChild)
+      }
+
+      compScore.appendChild(score);
+  }
+  return
 }
 
 // computer's game input
 function computerPlay(){
+  const compChoices = 
+        ['rock','paper','lobster','rock','paper','lobster','rock',
+         'paper', 'lobster', 'rock', 'paper', 'lobster'];
   let pickRandom = Math.floor(Math.random() * compChoices.length);
   return compChoices[pickRandom];
 }
@@ -120,80 +144,122 @@ function titleCase(text){
   return firstChar.concat(restOfString);
 }
 
-// Display's round result
-function displayer(playerSelection, computerSelection, result){
-  let display = document.querySelector('#display');
-  let displayPar = document.createElement('p');
 
-  let player = titleCase(playerSelection);
-  let computer = titleCase(computerSelection);
+// Plays one round of rock paper lobster
+function playRPS(e){
+  const player = e.target.value,
+        computer = computerPlay(),
+        humanCard = document.querySelector('#human-choice__card'),
+        compCard = document.querySelector('#comp-choice__card'),
+        playerDisplay = document.querySelector('#display__human-choice-group'),
+        compDisplay = document.querySelector('#display__comp-choice-group');    
 
-  displayPar.textContent = `${player} beats ${computer}! You win.`;
+  let result;
+  console.log('player: ', player);
+  console.log('computer: ', computer);
+  
+  if(player === computer){
+    result = 'draw'
+  } else if(player === 'rock'){
+    computer === 'lobster' ? result = 'win' : result = 'lose';  
+  } else if(player === 'paper'){
+    computer === 'rock' ? result = 'win' : result ='lose';
+  } else {
+    computer === 'paper' ? result = 'win' : result ='lose'
+  }
+
+  humanCard.style.backgroundImage = `url(/../assets/img/${player}f.png)`;
+
+  function displayCompChoice(choice) {
+
+    const imgURL = [
+          "url(../assets/img/rockf.png)", "url(../assets/img/paperf.png)",
+          "url(../assets/img/lobsterf.png)", "url(../assets/img/rockf.png)",
+          "url(../assets/img/paperf.png)", "url(../assets/img/lobsterf.png)"]
+    
+    let roll;
+
+    setTimeout(startRoll, 500);
+    
+    function startRoll(){
+      roll = setInterval(randomize, 90);
+      setTimeout(clearRandomize, 4000);
+    }
+    function randomize(){
+      let random = Math.floor(Math.random() * imgURL.length);
+      compCard.style.backgroundImage = imgURL[random];
+    }
+
+    function clearRandomize(){
+      clearInterval(roll);
+      compBgImage(choice);
+      setTimeout(displayResults, 1000, player, computer, result)
+      setTimeout(clearAll, 3000);
+      setTimeout(scoreKeeper, 3000, result);
+    }
+    
+    function clearAll(){
+      humanCard.style.backgroundImage = '';
+      compCard.style.backgroundImage = '';
+      announcer.removeChild(announcer.firstChild);
+      playerDisplay.style.boxShadow = '';
+      compDisplay.style.boxShadow = '';
+    }
+  
+    function compBgImage(choice){
+      console.log('choice: ', choice)
+        compCard.style.backgroundImage = `url(../assets/img/${choice}f.png)`;
+    }
+    
+  }
+
+  displayCompChoice(computer);
+
+  // Display's round result
+  function displayResults(player, computer, result){
+  
+  let announcement = document.createElement('p'),
+      titlePlayer = titleCase(player),
+      titleComputer = titleCase(computer);
+
+  if(result === 'draw'){
+    announcement.textContent = "It's a draw!";
+    if(announcer.hasChildNodes()){
+      announcer.removeChild(announcer.firstChild);
+    }
+    announcer.appendChild(announcement);
+    highlightWinner(result);
+    return
+  }
+
+  announcement.textContent = `${titlePlayer} beats ${titleComputer}! You win!`;
 
   if(result === 'lose'){
-    displayPar.textContent = `${player} loses to ${computer}! Oof...you lose.`
+    announcement.textContent = `${titlePlayer} succumbs to ${titleComputer}! You lose...`;
   }
-  if(result === 'draw'){
-    displayPar.textContent = "It's a draw!";
+  if(announcer.hasChildNodes()){
+    announcer.removeChild(announcer.firstChild);
   }
-
-  if(display.hasChildNodes()){
-    display.removeChild(display.firstChild);
-  }
-  
-  display.appendChild(displayPar);
-  return
-}
-
-// Plays one round of rock paper scissors
-function playRPS(e){
-  console.log(e);
-  let playerSelection = e.target.value;
-  let computerSelection = computerPlay();
-  let result;
-
-  if(playerSelection === computerSelection){
-    result = 'draw'
-  } else if(playerSelection === 'rock'){
-    computerSelection === 'scissors' ? result = 'win' : result = 'lose';  
-  } else if(playerSelection === 'paper'){
-    computerSelection === 'rock' ? result = 'win' : result ='lose';
-  } else {
-    computerSelection === 'paper' ? result = 'win' : result ='lose'
+  announcer.appendChild(announcement);
+  highlightWinner(result);
   }
 
-  displayer(playerSelection, computerSelection, result);
-  scoreKeeper(result);
+  function highlightWinner(result){
+
+    if(result === 'draw'){
+      playerDisplay.style.boxShadow = '0 0 10px blue';
+      compDisplay.style.boxShadow = '0 0 10px blue';
+    }else if(result === 'win'){
+      playerDisplay.style.boxShadow = '0 0 10px green';
+      compDisplay.style.boxShadow= '0 0 10px red';
+    } else {
+      playerDisplay.style.boxShadow = '0 0 10px red';
+      compDisplay.style.boxShadow = '0 0 10px green';
+    }
+  }
+
+
+  // displayRoundResult(playerSelection, computerSelection, result);
+  // playerBgImage(playerSelection);
   return result;
 }
-
-function newGame(){
-  scoreHuman = 0;
-  scoreComp = 0;
-
-  counterHuman.textContent = scoreHuman;
-  counterComp.textContent = scoreComp;
-
-  if(humanScoreCard.hasChildNodes()){
-    humanScoreCard.removeChild(humanScoreCard.firstChild);
-  }
-
-  if(compScoreCard.hasChildNodes()){
-    compScoreCard.removeChild(compScoreCard.firstChild);
-  }
-
-  humanScoreCard.appendChild(counterHuman);
-  compScoreCard.appendChild(counterComp);
-
-}
-
-// EXPERIMENTAL
-
-// const startGame = document.querySelector('.startGame');
-// const startUI = document.querySelector('.startUI');
-// const mainGame = document.querySelector('.mainGame');
-
-// startGame.addEventListener('click', function(){
-  // startUI.classList.toggle('hidden');
-  // mainGame.classList.toggle('hidden');
-// })
