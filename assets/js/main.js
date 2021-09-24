@@ -244,17 +244,17 @@ function playRPS(e){
     computer === 'paper' ? result = 'win' : result ='lose'
   }
 
-  humanCard.style.backgroundImage = `url(rock-paper-scissors/assets/img/${player}f.png)`;
+  humanCard.style.backgroundImage = `url(assets/img/${player}f.png)`;
 
   function displayCompChoice(choice) {
 
     const imgURL = [
-          "url(rock-paper-scissors/assets/img/rockf.png)", 
-          "url(rock-paper-scissors/assets/img/paperf.png)",
-          "url(rock-paper-scissors/assets/img/lobsterf.png)", 
-          "url(rock-paper-scissors/assets/img/rockf.png)",
-          "url(rock-paper-scissors/assets/img/paperf.png)", 
-          "url(rock-paper-scissors/assets/img/lobsterf.png)"]
+          "url(assets/img/rockf.png)", 
+          "url(assets/img/paperf.png)",
+          "url(assets/img/lobsterf.png)", 
+          "url(assets/img/rockf.png)",
+          "url(assets/img/paperf.png)", 
+          "url(assets/img/lobsterf.png)"]
     
     let roll;
 
@@ -288,7 +288,7 @@ function playRPS(e){
   
     function compBgImage(choice){
       console.log('choice: ', choice)
-        compCard.style.backgroundImage = `url(rock-paper-scissors/assets/img/${choice}f.png)`;
+        compCard.style.backgroundImage = `url(assets/img/${choice}f.png)`;
     }
     
   }
