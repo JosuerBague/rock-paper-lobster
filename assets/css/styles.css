@@ -52,6 +52,7 @@ html {
 /* startUI */
 
 .start-ui {
+  max-width: 1440px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -141,7 +142,7 @@ html {
   flex-direction: column;
   align-items: center;
   overflow: hidden;
-  border: 1px solid black;
+  max-width: 1440px;
 }
 
 .border{
@@ -157,7 +158,6 @@ html {
   margin: 1em 0;
   width: 80%;
   max-width: 100px;
-  border: 1px solid black;
 }
 
 .quit-btn,
@@ -387,22 +387,26 @@ html {
   align-items: center;
 }
 
-.modal-quit .modal{
+.modal-quit .modal,
+.modal-reset .modal{
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 
-.modal-quit .modal > span{
+.modal-quit .modal > span,
+.modal-reset .modal > span{
   font-family: 'Arya';
   font-size: 40px;
 }
 
-.modal-quit .confirm-btns{
+.modal-quit .confirm-btns,
+.modal-reset .confirm-btns{
   display: flex;
   gap: 2em
 }
-.modal-quit button{
+.modal-quit button,
+.modal-reset button{
   background-color: #903B33;
   border: none;
   padding: 0.5em 1em;
@@ -411,7 +415,8 @@ html {
   color: #f4f4f4;
 }
 
-.modal-quit button:hover{
+.modal-quit button:hover,
+.modal-reset button:hover{
   background-color: #b6362a;
 }
 

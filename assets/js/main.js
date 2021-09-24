@@ -15,6 +15,22 @@
     mainGame.classList.toggle('hidden');
   }
 
+  const resetBtn = document.querySelector('#reset-btn');
+  resetBtn.addEventListener('click', function(){
+    const modalReset = document.querySelector('#modal-reset');
+    modalReset.classList.toggle('modal-active');
+  })
+  function resetGame(){
+    const startUI = document.querySelector('#start-ui');
+    const mainGame = document.querySelector('#main-game');
+    const modalThanks = document.querySelector('#modal-thanks');
+
+    modalThanks.classList.toggle('modal-active');
+    startUI.classList.toggle('hidden');
+    mainGame.classList.toggle('hidden');
+    reset();
+  }
+
   
 
 // #Main Game UI Variables
@@ -46,46 +62,102 @@
 
     const modalQuit = document.querySelector('#modal-quit');
     const modalThanks = document.querySelector('#modal-thanks');
-    const startUI = document.querySelector('#start-ui');
-    const mainGame = document.querySelector('#main-game');
 
     modalQuit.classList.toggle('modal-active');
     modalThanks.classList.toggle('modal-active');
 
-    setTimeout(function resetGame(){
-      modalThanks.classList.toggle('modal-active');
-      startUI.classList.toggle('hidden');
-      mainGame.classList.toggle('hidden');
-    }, 5000);
+    setTimeout(resetGame, 3000);
   });
 
+  const confirmResetBtn = document.querySelector('#reset-yes');
+  confirmResetBtn.addEventListener('click',function(){
+    let parentModal = this.parentElement.parentElement.parentElement;
+    parentModal.classList.toggle('modal-active');
+    reset();
+  })
+
+  const declineResetBtn = document.querySelector('#reset-no');
+  declineResetBtn.addEventListener('click', function(){
+    const modalReset = document.querySelector('#modal-reset');
+    modalReset.classList.toggle('modal-active');
+  })
+
+  function reset(){
+    const startHuman = document.createElement('span'),
+          startComp = document.createElement('span')
+          human = document.querySelector('#human-score'),
+          comp = document.querySelector('#comp-score');
+    
+    startHuman.textContent = 0;
+    startComp.textContent = 0;
+
+    while(human.hasChildNodes()){
+      human.removeChild(human.firstChild);
+    }
+    while(comp.hasChildNodes()){
+      comp.removeChild(comp.firstChild);
+    }
+
+    human.appendChild(startHuman);
+    comp.appendChild(startComp);
+  }
 
 
 
   
 // #Modals
-  const modalWin = document.querySelector('#modal-win');
   const modalLose = document.querySelector('#modal-lose');
+  
+  const play = document.querySelector('#win-play-again');
+  const parent = play.parentElement.parentElement.parentElement;
+  console.log(parent);
 
   // Modal Btns
   const playAgainBtns = document.querySelectorAll('.play-again');
+
+  playAgainBtns.forEach(playAgain => playAgain.addEventListener('click', function(){
+    let parentModal = this.parentElement.parentElement.parentElement;
+    parentModal.classList.toggle('modal-active');
+    reset();
+  }))
   const exitGameBtns = document.querySelectorAll('.exit-game');
+
+  exitGameBtns.forEach(exitGame => exitGame.addEventListener('click', function(){
+    const parentModal = this.parentElement.parentElement.parentElement;
+    const modalThanks = document.querySelector('#modal-thanks');
+
+    parentModal.classList.toggle('modal-active');
+    modalThanks.classList.toggle('modal-active');
+
+    setTimeout(resetGame, 3000);
+  }));
   const declineExitBtn = document.querySelector('.quit-no');
 
-  // playAgainBtns.forEach(playAgainBtn => {
-  //   playAgainBtn.addEventListener('click', playAgain)
-  // });
-
-  // exitGameBtns.forEach(exitGameBtn => {
-  //   exitGameBtn.addEventListener('click', exitGame);
-  // })
-
+ 
   declineExitBtn.addEventListener('click', declineExit);
 
   function declineExit(){
+    const modalQuit = document.querySelector('#modal-quit');
     modalQuit.classList.toggle('modal-active');
     return
   }
+
+modalWin = document.querySelector('#modal-win');
+
+
+function gameEnder(){
+  const playerScoreEnd = parseInt(document.querySelector('#human-score')
+                         .firstElementChild.innerText);
+  const compScoreEnd = parseInt(document.querySelector('#comp-score')
+                       .firstElementChild.innerText);
+  console.log('I ran.', playerScoreEnd, compScoreEnd);
+
+  if(playerScoreEnd === 1 || compScoreEnd === 1){
+    let modalName = (playerScoreEnd > compScoreEnd) ? modalWin : modalLose;
+    modalName.classList.toggle('modal-active');
+    console.log('It works')
+  }
+}
 
 function scoreKeeper(result){
 
@@ -124,6 +196,7 @@ function scoreKeeper(result){
 
       compScore.appendChild(score);
   }
+  gameEnder();
   return
 }
 
@@ -147,6 +220,9 @@ function titleCase(text){
 
 // Plays one round of rock paper lobster
 function playRPS(e){
+
+  choiceBtns.forEach(choice => choice.disabled = true);
+
   const player = e.target.value,
         computer = computerPlay(),
         humanCard = document.querySelector('#human-choice__card'),
@@ -204,6 +280,7 @@ function playRPS(e){
       announcer.removeChild(announcer.firstChild);
       playerDisplay.style.boxShadow = '';
       compDisplay.style.boxShadow = '';
+      choiceBtns.forEach(choice => choice.disabled = false);
     }
   
     function compBgImage(choice){
@@ -263,3 +340,5 @@ function playRPS(e){
   // playerBgImage(playerSelection);
   return result;
 }
+
+                  

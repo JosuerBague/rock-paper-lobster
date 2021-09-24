@@ -12,7 +12,7 @@
 <body>
   <div id="container">
 
-    <div id="start-ui" class="start-ui hidden">
+    <div id="start-ui" class="start-ui">
       <h1 class="game-title">The Bizzarre World of</h1>
       <!--  -->
       <div class="start-choices">
@@ -45,7 +45,7 @@
     </div>
     <!--  -->
 
-    <div id="main-game" class="main-game">
+    <div id="main-game" class="main-game hidden">
       <div class="exit-reset-btn-group">
         <button id="reset-btn" class="reset-btn">
           <img src="/assets/img/reset.svg" alt="Reset Game Button">
@@ -90,10 +90,10 @@
           <span>You claim the title of</span>
           <span>King of Bizarre</span>
           <div class="modal-btns">
-            <button id="play-again-btn" class="play-again">
+            <button id="win-play-again" class="play-again">
               <span>Play Again</span>
             </button>
-            <button id="exit-game-btn" class="exit-game">
+            <button id="lose-exit-game" class="exit-game">
               <span>Exit Game</span>
             </button>
           </div>
@@ -107,10 +107,10 @@
           <span>You are granted the title of:</span>
           <span>Normie</span>
           <div class="modal-btns">
-            <button id="play-again-btn" class="play-again">
+            <button id="lose-play-again" class="play-again">
               <span>Play Again</span>
             </button>
-            <button id="exit-game-btn" class="exit-game">
+            <button id="lose-exit-game" class="exit-game">
               <span>Exit Game</span>
             </button>
           </div>
@@ -134,6 +134,21 @@
             <button id="quit-no" class="quit-no">
               <span>No</span>
             </button></div>
+        </div>
+      </div>
+      <!--  -->
+      <div id="modal-reset" class="modal-reset modal-bg">
+        <div class="modal">
+          <span>Reset the game?</span>
+          <div class="confirm-btns">
+            <button id="reset-yes" class="reset-yes">
+              <span>Yes</span>
+            </button>
+            <!-- -->
+            <button id="reset-no" class="reset-no">
+              <span>No</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
