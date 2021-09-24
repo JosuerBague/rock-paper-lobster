@@ -12,7 +12,7 @@
 <body>
   <div id="container">
 
-    <div id="start-ui" class="start-ui">
+    <div id="start-ui" class="start-ui hidden">
       <h1 class="game-title">The Bizzarre World of</h1>
       <!--  -->
       <div class="start-choices">
@@ -45,7 +45,7 @@
     </div>
     <!--  -->
 
-    <div id="main-game" class="main-game hidden">
+    <div id="main-game" class="main-game">
       <div class="exit-reset-btn-group">
         <button id="reset-btn" class="reset-btn">
           <img src="/assets/img/reset.svg" alt="Reset Game Button">
@@ -59,12 +59,12 @@
         <!--  -->
         <div id="display__human-choice-group" class="display__human-choice-group">
           <div id="human-choice__card" class="card_choice"></div>
-          <span id="human-score" class="score">0</span>
+          <span id="human-score" class="score"><span>0</span></span>
         </div>
         <!--  -->
         <div id="display__comp-choice-group" class="display__comp-choice-group">
           <div id="comp-choice__card" class="card_choice"></div>
-          <span id="comp-score" class="score">0</span>
+          <span id="comp-score" class="score"><span>0</span></span>
         </div>
       </div>
       

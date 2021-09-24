@@ -1,16 +1,10 @@
-const compChoices = ['rock','paper','lobster','rock','paper','lobster','rock',
-                     'paper', 'lobster'];
 
-const imgURL = ["url(../assets/img/rockf.png)", "url(../assets/img/paperf.png)",
-                "url(../assets/img/lobsterf.png)", "url(../assets/img/rockf.png)",
-                "url(../assets/img/paperf.png)", "url(../assets/img/lobsterf.png)"]
 
-let tallyHuman = 0;
-let tallyComp = 0;
+
+
 
 // #Start Game Btn
   const startGameBtn = document.querySelector('#start-game-btn');
-
   startGameBtn.addEventListener('click', startGame);
 
   function startGame(){
@@ -28,12 +22,10 @@ let tallyComp = 0;
   const announcer = document.querySelector('#display__announcer');
 
   // Human
-  const humanChoiceCard = document.querySelector('#human-choice__card');
-  const humanScore = document.querySelector('#human-score')
+  
 
   // Comp
-  const compChoiceCard = document.querySelector('#comp-choice__card');
-  const compScore = document.querySelector('#comp-score')
+  
 
   // Choices & Btns
   const choiceBtns = document.querySelectorAll('.choice');
@@ -95,9 +87,20 @@ let tallyComp = 0;
     return
   }
 
-
 function scoreKeeper(result){
+
+  let tallyHuman = parseInt(document.querySelector('#human-score')
+                   .firstElementChild.innerText);
+
+  let tallyComp = parseInt(document.querySelector('#comp-score')
+                  .firstElementChild.innerText);
+  
   let score = document.createElement('span');
+
+  const humanScore = document.querySelector('#human-score'),
+        compScore = document.querySelector('#comp-score');
+
+
 
   if(result==='draw'){
       return
@@ -126,6 +129,9 @@ function scoreKeeper(result){
 
 // computer's game input
 function computerPlay(){
+  const compChoices = 
+        ['rock','paper','lobster','rock','paper','lobster','rock',
+         'paper', 'lobster', 'rock', 'paper', 'lobster'];
   let pickRandom = Math.floor(Math.random() * compChoices.length);
   return compChoices[pickRandom];
 }
@@ -138,137 +144,122 @@ function titleCase(text){
   return firstChar.concat(restOfString);
 }
 
-// Display's round result
-function displayRoundResult(playerSelection, computerSelection, result){
-  
-  let comparisonPar = document.createElement('p');
-  let resultPar = document.createElement('p');
-
-  if(result === 'draw'){
-    comparisonPar.textContent = "It's a draw!";
-    resultPar.textContent = '';
-
-    while(announcer.hasChildNodes()){
-      announcer.removeChild(announcer.firstChild);
-    }
-
-    announcer.appendChild(comparisonPar);
-    return
-  }
-
-  let player = titleCase(playerSelection);
-  let computer = titleCase(computerSelection);
-
-  comparisonPar.textContent = `${player} beats ${computer}!`;
-  resultPar.textContent = 'You win!'
-
-  if(result === 'lose'){
-    comparisonPar.textContent = `${player} succumbs to ${computer}!`
-    resultPar.textContent = 'You lose!'
-  }
-  
-
-  while(announcer.hasChildNodes()){
-    announcer.removeChild(announcer.firstChild);
-  }
-  
-  announcer.appendChild(comparisonPar);
-  announcer.appendChild(resultPar);
-  return
-}
-
-function playerBgImage(choice){
-  if(choice === 'rock'){
-    humanChoiceCard.style.backgroundImage = "url(../assets/img/rockf.png)"
-  } else if(choice === 'paper'){
-    humanChoiceCard.style.backgroundImage = "url(../assets/img/paperf.png)"
-  } else {
-    humanChoiceCard.style.backgroundImage = "url(../assets/img/lobsterf.png)"
-  }
-}
-
-
-
-function displayCompChoice(choice) {
-  let randomize = setInterval(bgImageRandomize, 90);
-  setTimeout(clearRandomize, 2000);
-  setTimeout(compBgImage, 5000, choice);
-
-  function clearRandomize(){
-    clearInterval(randomize);
-  }
-
-  function bgImageRandomize(){
-    let random = Math.floor(Math.random() * imgURL.length);
-  
-    compChoiceCard.style.backgroundImage = imgURL[random];
-  }
-
-  function compBgImage(choice){
-    if(choice === 'rock'){
-      compChoiceCard.style.backgroundImage = "url(../assets/img/rockf.png)"
-    } else if (choice === 'paper'){
-      compChoiceCard.style.backgroundImage = "url(../assets/img/paperf.png)"
-    } else {
-      compChoiceCard.style.backgroundImage = "url(../assets/img/lobsterf.png)"
-    }
-  }
-}
-
 
 // Plays one round of rock paper lobster
 function playRPS(e){
-  let playerSelection = e.target.value;
-  let computerSelection = computerPlay();
-  let result;
-  
-  console.log('player :', playerSelection);
-  console.log('computer :', computerSelection);
+  const player = e.target.value,
+        computer = computerPlay(),
+        humanCard = document.querySelector('#human-choice__card'),
+        compCard = document.querySelector('#comp-choice__card'),
+        playerDisplay = document.querySelector('#display__human-choice-group'),
+        compDisplay = document.querySelector('#display__comp-choice-group');    
 
-  if(playerSelection === computerSelection){
+  let result;
+  console.log('player: ', player);
+  console.log('computer: ', computer);
+  
+  if(player === computer){
     result = 'draw'
-  } else if(playerSelection === 'rock'){
-    computerSelection === 'lobster' ? result = 'win' : result = 'lose';  
-  } else if(playerSelection === 'paper'){
-    computerSelection === 'rock' ? result = 'win' : result ='lose';
+  } else if(player === 'rock'){
+    computer === 'lobster' ? result = 'win' : result = 'lose';  
+  } else if(player === 'paper'){
+    computer === 'rock' ? result = 'win' : result ='lose';
   } else {
-    computerSelection === 'paper' ? result = 'win' : result ='lose'
+    computer === 'paper' ? result = 'win' : result ='lose'
   }
 
-  displayRoundResult(playerSelection, computerSelection, result);
-  scoreKeeper(result);
-  playerBgImage(playerSelection);
-  displayCompChoice();
+  humanCard.style.backgroundImage = `url(/../assets/img/${player}f.png)`;
+
+  function displayCompChoice(choice) {
+
+    const imgURL = [
+          "url(../assets/img/rockf.png)", "url(../assets/img/paperf.png)",
+          "url(../assets/img/lobsterf.png)", "url(../assets/img/rockf.png)",
+          "url(../assets/img/paperf.png)", "url(../assets/img/lobsterf.png)"]
+    
+    let roll;
+
+    setTimeout(startRoll, 500);
+    
+    function startRoll(){
+      roll = setInterval(randomize, 90);
+      setTimeout(clearRandomize, 4000);
+    }
+    function randomize(){
+      let random = Math.floor(Math.random() * imgURL.length);
+      compCard.style.backgroundImage = imgURL[random];
+    }
+
+    function clearRandomize(){
+      clearInterval(roll);
+      compBgImage(choice);
+      setTimeout(displayResults, 1000, player, computer, result)
+      setTimeout(clearAll, 3000);
+      setTimeout(scoreKeeper, 3000, result);
+    }
+    
+    function clearAll(){
+      humanCard.style.backgroundImage = '';
+      compCard.style.backgroundImage = '';
+      announcer.removeChild(announcer.firstChild);
+      playerDisplay.style.boxShadow = '';
+      compDisplay.style.boxShadow = '';
+    }
+  
+    function compBgImage(choice){
+      console.log('choice: ', choice)
+        compCard.style.backgroundImage = `url(../assets/img/${choice}f.png)`;
+    }
+    
+  }
+
+  displayCompChoice(computer);
+
+  // Display's round result
+  function displayResults(player, computer, result){
+  
+  let announcement = document.createElement('p'),
+      titlePlayer = titleCase(player),
+      titleComputer = titleCase(computer);
+
+  if(result === 'draw'){
+    announcement.textContent = "It's a draw!";
+    if(announcer.hasChildNodes()){
+      announcer.removeChild(announcer.firstChild);
+    }
+    announcer.appendChild(announcement);
+    highlightWinner(result);
+    return
+  }
+
+  announcement.textContent = `${titlePlayer} beats ${titleComputer}! You win!`;
+
+  if(result === 'lose'){
+    announcement.textContent = `${titlePlayer} succumbs to ${titleComputer}! You lose...`;
+  }
+  if(announcer.hasChildNodes()){
+    announcer.removeChild(announcer.firstChild);
+  }
+  announcer.appendChild(announcement);
+  highlightWinner(result);
+  }
+
+  function highlightWinner(result){
+
+    if(result === 'draw'){
+      playerDisplay.style.boxShadow = '0 0 10px blue';
+      compDisplay.style.boxShadow = '0 0 10px blue';
+    }else if(result === 'win'){
+      playerDisplay.style.boxShadow = '0 0 10px green';
+      compDisplay.style.boxShadow= '0 0 10px red';
+    } else {
+      playerDisplay.style.boxShadow = '0 0 10px red';
+      compDisplay.style.boxShadow = '0 0 10px green';
+    }
+  }
+
+
+  // displayRoundResult(playerSelection, computerSelection, result);
+  // playerBgImage(playerSelection);
   return result;
 }
-
-// function newGame(){
-//   scoreHuman = 0;
-//   scoreComp = 0;
-
-//   counterHuman.textContent = scoreHuman;
-//   counterComp.textContent = scoreComp;
-
-//   if(humanScoreCard.hasChildNodes()){
-//     humanScoreCard.removeChild(humanScoreCard.firstChild);
-//   }
-
-//   if(compScoreCard.hasChildNodes()){
-//     compScoreCard.removeChild(compScoreCard.firstChild);
-//   }
-
-//   humanScoreCard.appendChild(counterHuman);
-//   compScoreCard.appendChild(counterComp);
-
-// }
-
-// EXPERIMENTAL
-
-// const startGame = document.querySelector('.startGame');
-// const startUI = document.querySelector('.startUI');
-// const mainGame = document.querySelector('.mainGame');
-
-// startGame.addEventListener('click', function(){
-  // startUI.classList.toggle('hidden');
-  // mainGame.classList.toggle('hidden');
-// })
