@@ -152,7 +152,7 @@ function gameEnder(){
                        .firstElementChild.innerText);
   console.log('I ran.', playerScoreEnd, compScoreEnd);
 
-  if(playerScoreEnd === 1 || compScoreEnd === 1){
+  if(playerScoreEnd === 5 || compScoreEnd === 5){
     let modalName = (playerScoreEnd > compScoreEnd) ? modalWin : modalLose;
     modalName.classList.toggle('modal-active');
     console.log('It works')
