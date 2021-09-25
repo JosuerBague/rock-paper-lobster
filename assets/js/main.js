@@ -1,8 +1,4 @@
 
-
-
-
-
 // #Start Game Btn
   const startGameBtn = document.querySelector('#start-game-btn');
   startGameBtn.addEventListener('click', startGame);
@@ -15,74 +11,36 @@
     mainGame.classList.toggle('hidden');
   }
 
+// #ResetGameBtn -> circular arrow with green bg
   const resetBtn = document.querySelector('#reset-btn');
-  resetBtn.addEventListener('click', function(){
-    const modalReset = document.querySelector('#modal-reset');
-    modalReset.classList.toggle('modal-active');
-  })
+
+  resetBtn.addEventListener('click', resetGame);
+
   function resetGame(){
-    const startUI = document.querySelector('#start-ui');
-    const mainGame = document.querySelector('#main-game');
-    const modalThanks = document.querySelector('#modal-thanks');
-
-    modalThanks.classList.toggle('modal-active');
-    startUI.classList.toggle('hidden');
-    mainGame.classList.toggle('hidden');
-    reset();
-  }
-
-  
-
-// #Main Game UI Variables
-  // Displayers
-  const announcer = document.querySelector('#display__announcer');
-
-  // Human
-  
-
-  // Comp
-  
-
-  // Choices & Btns
-  const choiceBtns = document.querySelectorAll('.choice');
-  // const newGameBtn = document.querySelector("#new-game-btn");
-
-  choiceBtns.forEach(choice => choice.addEventListener('click', playRPS));
-  // newGameBtn.addEventListener('click', newGame);
-
-
-  const quitBtn = document.querySelector('#quit-btn');
-  quitBtn.addEventListener('click', function quitGame(){
-    const modalQuit = document.querySelector('#modal-quit');
-    modalQuit.classList.toggle('modal-active');
-  });
-  
-  const confirmExitBtn = document.querySelector('#quit-yes');
-  confirmExitBtn.addEventListener('click', function confirmExit(){
-
-    const modalQuit = document.querySelector('#modal-quit');
-    const modalThanks = document.querySelector('#modal-thanks');
-
-    modalQuit.classList.toggle('modal-active');
-    modalThanks.classList.toggle('modal-active');
-
-    setTimeout(resetGame, 3000);
-  });
-
-  const confirmResetBtn = document.querySelector('#reset-yes');
-  confirmResetBtn.addEventListener('click',function(){
-    let parentModal = this.parentElement.parentElement.parentElement;
-    parentModal.classList.toggle('modal-active');
-    reset();
-  })
-
-  const declineResetBtn = document.querySelector('#reset-no');
-  declineResetBtn.addEventListener('click', function(){
     const modalReset = document.querySelector('#modal-reset');
     modalReset.classList.toggle('modal-active');
-  })
+  };
 
-  function reset(){
+// #DeclineReset -> found in modal-reset
+  const declineResetBtn = document.querySelector('#reset-no');
+  declineResetBtn.addEventListener('click', declineReset);
+  
+  function declineReset(){
+    const modalReset = document.querySelector('#modal-reset');
+    modalReset.classList.toggle('modal-active');
+  };
+
+// #ConfirmReset -> found in modal-reset
+  const confirmResetBtn = document.querySelector('#reset-yes');
+  confirmResetBtn.addEventListener('click',confirmReset)
+  
+  function confirmReset(){
+    let modalReset = document.querySelector('#modal-reset');
+    modalReset.classList.toggle('modal-active');
+    resetScore();
+  };
+
+  function resetScore(){
     const startHuman = document.createElement('span'),
           startComp = document.createElement('span')
           human = document.querySelector('#human-score'),
@@ -102,45 +60,86 @@
     comp.appendChild(startComp);
   }
 
-
-
+// #QuitBtn -> X button with red bg
+  const quitBtn = document.querySelector('#quit-btn');
+  quitBtn.addEventListener('click', quitGame)
   
-// #Modals
-  const modalLose = document.querySelector('#modal-lose');
-  
-  const play = document.querySelector('#win-play-again');
-  const parent = play.parentElement.parentElement.parentElement;
-  console.log(parent);
+  function quitGame(){
+    const modalQuit = document.querySelector('#modal-quit');
+    modalQuit.classList.toggle('modal-active');
+  };
 
-  // Modal Btns
+// #Decline Quit -> found in modal-quit.
+  const declineExitBtn = document.querySelector('.quit-no');
+  declineExitBtn.addEventListener('click', declineQuit);
+
+  function declineQuit(){
+    const modalQuit = document.querySelector('#modal-quit');
+    modalQuit.classList.toggle('modal-active');
+  }
+
+// #Confirm Quit -> Btn found in modal-quit
+  const confirmExitBtn = document.querySelector('#quit-yes');
+  confirmExitBtn.addEventListener('click', confirmQuit);
+
+  function confirmQuit(){
+    const modalQuit = document.querySelector('#modal-quit');
+    const modalThanks = document.querySelector('#modal-thanks');
+
+    modalQuit.classList.toggle('modal-active');
+    modalThanks.classList.toggle('modal-active');
+
+    setTimeout(resetAll, 3000);
+  };
+
+  function resetAll(){
+    const startUI = document.querySelector('#start-ui');
+    const mainGame = document.querySelector('#main-game');
+    const modalThanks = document.querySelector('#modal-thanks');
+
+    modalThanks.classList.toggle('modal-active');
+    startUI.classList.toggle('hidden');
+    mainGame.classList.toggle('hidden');
+    resetScore();
+  }
+
+// #Play Again btns -> found in win & lose modals. Resets game.
   const playAgainBtns = document.querySelectorAll('.play-again');
-
-  playAgainBtns.forEach(playAgain => playAgain.addEventListener('click', function(){
+  playAgainBtns.forEach(playAgain => playAgain.addEventListener('click', function playAgain(){
     let parentModal = this.parentElement.parentElement.parentElement;
     parentModal.classList.toggle('modal-active');
-    reset();
-  }))
+    resetScore();
+  }));
+
+// #Exit game btns -> found in win & lose modals. Brings user to startUI state.
   const exitGameBtns = document.querySelectorAll('.exit-game');
 
-  exitGameBtns.forEach(exitGame => exitGame.addEventListener('click', function(){
+  exitGameBtns.forEach(exitGame => exitGame.addEventListener('click', function exitGame(){
     const parentModal = this.parentElement.parentElement.parentElement;
     const modalThanks = document.querySelector('#modal-thanks');
 
     parentModal.classList.toggle('modal-active');
     modalThanks.classList.toggle('modal-active');
 
-    setTimeout(resetGame, 3000);
+    setTimeout(resetAll, 3000);
   }));
-  const declineExitBtn = document.querySelector('.quit-no');
 
- 
-  declineExitBtn.addEventListener('click', declineExit);
+// 
 
-  function declineExit(){
-    const modalQuit = document.querySelector('#modal-quit');
-    modalQuit.classList.toggle('modal-active');
-    return
-  }
+  
+  const announcer = document.querySelector('#display__announcer');
+  // Choices & Btns
+  
+  const choiceBtns = document.querySelectorAll('.choice');
+  choiceBtns.forEach(choice => choice.addEventListener('click', playRPS));
+
+// #Modals
+  const modalLose = document.querySelector('#modal-lose');
+
+  // Modal Btns
+  
+  
+
 
 modalWin = document.querySelector('#modal-win');
 
@@ -225,14 +224,12 @@ function playRPS(e){
 
   const player = e.target.value,
         computer = computerPlay(),
-        humanCard = document.querySelector('#human-choice__card'),
-        compCard = document.querySelector('#comp-choice__card'),
-        playerDisplay = document.querySelector('#display__human-choice-group'),
-        compDisplay = document.querySelector('#display__comp-choice-group');    
+        humanCardBg = document.querySelector('#human-choice__card'),
+        compCardBg = document.querySelector('#comp-choice__card'),
+        humanCardParent = document.querySelector('#display__human-choice-group'),
+        compCardParent = document.querySelector('#display__comp-choice-group');    
 
   let result;
-  console.log('player: ', player);
-  console.log('computer: ', computer);
   
   if(player === computer){
     result = 'draw'
@@ -244,7 +241,9 @@ function playRPS(e){
     computer === 'paper' ? result = 'win' : result ='lose'
   }
 
-  humanCard.style.backgroundImage = `url(assets/img/${player}f.png)`;
+  humanCardBg.style.backgroundImage = `url(assets/img/${player}f.png)`;
+  displayCompChoice(computer);
+
 
   function displayCompChoice(choice) {
 
@@ -266,7 +265,7 @@ function playRPS(e){
     }
     function randomize(){
       let random = Math.floor(Math.random() * imgURL.length);
-      compCard.style.backgroundImage = imgURL[random];
+      compCardBg.style.backgroundImage = imgURL[random];
     }
 
     function clearRandomize(){
@@ -278,70 +277,67 @@ function playRPS(e){
     }
     
     function clearAll(){
-      humanCard.style.backgroundImage = '';
-      compCard.style.backgroundImage = '';
+      humanCardBg.style.backgroundImage = '';
+      compCardBg.style.backgroundImage = '';
       announcer.removeChild(announcer.firstChild);
-      playerDisplay.style.boxShadow = '';
-      compDisplay.style.boxShadow = '';
+      humanCardParent.style.boxShadow = '';
+      compCardParent.style.boxShadow = '';
       choiceBtns.forEach(choice => choice.disabled = false);
     }
-  
+
     function compBgImage(choice){
       console.log('choice: ', choice)
-        compCard.style.backgroundImage = `url(assets/img/${choice}f.png)`;
+        compCardBg.style.backgroundImage = `url(assets/img/${choice}f.png)`;
     }
     
-  }
+  } /* End display comp choice*/
 
-  displayCompChoice(computer);
-
-  // Display's round result
   function displayResults(player, computer, result){
   
-  let announcement = document.createElement('p'),
+    let announcement = document.createElement('p'),
       titlePlayer = titleCase(player),
       titleComputer = titleCase(computer);
 
-  if(result === 'draw'){
-    announcement.textContent = "It's a draw!";
+    if(result === 'draw'){
+
+      announcement.textContent = "It's a draw!";
+
+      if(announcer.hasChildNodes()){
+        announcer.removeChild(announcer.firstChild);
+      }
+
+      announcer.appendChild(announcement);
+      highlightWinner(result);
+      return
+    }
+
+    announcement.textContent = `${titlePlayer} beats ${titleComputer}! You win!`;
+
+    if(result === 'lose'){
+    announcement.textContent = `${titlePlayer} succumbs to ${titleComputer}! You lose...`;
+    }
+
     if(announcer.hasChildNodes()){
       announcer.removeChild(announcer.firstChild);
     }
     announcer.appendChild(announcement);
     highlightWinner(result);
-    return
-  }
 
-  announcement.textContent = `${titlePlayer} beats ${titleComputer}! You win!`;
-
-  if(result === 'lose'){
-    announcement.textContent = `${titlePlayer} succumbs to ${titleComputer}! You lose...`;
-  }
-  if(announcer.hasChildNodes()){
-    announcer.removeChild(announcer.firstChild);
-  }
-  announcer.appendChild(announcement);
-  highlightWinner(result);
-  }
+  } /* End display results */
 
   function highlightWinner(result){
 
     if(result === 'draw'){
-      playerDisplay.style.boxShadow = '0 0 10px blue';
-      compDisplay.style.boxShadow = '0 0 10px blue';
+      humanCardParent.style.boxShadow = '0 0 10px blue';
+      compCardParent.style.boxShadow = '0 0 10px blue';
     }else if(result === 'win'){
-      playerDisplay.style.boxShadow = '0 0 10px green';
-      compDisplay.style.boxShadow= '0 0 10px red';
+      humanCardParent.style.boxShadow = '0 0 10px green';
+      compCardParent.style.boxShadow= '0 0 10px red';
     } else {
-      playerDisplay.style.boxShadow = '0 0 10px red';
-      compDisplay.style.boxShadow = '0 0 10px green';
+      humanCardParent.style.boxShadow = '0 0 10px red';
+      compCardParent.style.boxShadow = '0 0 10px green';
     }
   }
-
-
-  // displayRoundResult(playerSelection, computerSelection, result);
-  // playerBgImage(playerSelection);
-  return result;
-}
+} /* End of RPS*/
 
                   
