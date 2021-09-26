@@ -1,13 +1,13 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 body {
-  min-height: 100vh;
-  height: 100%;
-  /* display: flex;
+	min-height: 100vh;
+	height: 100%;
+	/* display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -15,416 +15,556 @@ body {
 }
 
 html {
-  background-color: lightblue;
-  height: 100%;
+	background-color: lightblue;
+	min-height: 100vh;
+	height: 100%;
 }
 
 #container {
-  background-image: url(../img/pexels-tirachard-kumtanom-347139.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: left bottom;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+	background-image: url(../img/pexels-tirachard-kumtanom-347139.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: left bottom;
+	min-height: 100vh;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 /* Fonts */
 
 @font-face {
-  font-family: 'SF Fedora';
-  src: url(../fonts/SF-Fedora/sf-fedora.ttf);
+	font-family: "SF Fedora";
+	src: url(../fonts/SF-Fedora/sf-fedora.ttf);
 }
 
 @font-face {
-  font-family: 'Arya';
-  src: url(../fonts/Arya/Arya-Regular.ttf);
+	font-family: "Arya";
+	src: url(../fonts/Arya/Arya-Regular.ttf);
 }
 
 @font-face {
-  font-family: 'Arya';
-  font-weight: bold;
-  src: url(../fonts/Arya/Arya-Bold.ttf);
+	font-family: "Arya";
+	font-weight: bold;
+	src: url(../fonts/Arya/Arya-Bold.ttf);
 }
 
 /* startUI */
 
 .start-ui {
-  max-width: 1440px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
-  padding-top: 8em;
+	max-width: 1440px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-height: 100vh;
+	height: 100%;
+	padding-top: 8em;
 }
 
-.start-ui .game-title{
-  font-family: 'SF Fedora';
-  font-size: 60px;
-  margin-bottom: 2em;
+.start-ui .game-title {
+	font-family: "SF Fedora";
+	font-size: 1.75em;
+	/* margin-bottom: 2em; */
 }
 
-.start-choices{
-  height: 50%;
-  width: 100%;
-  display:flex;
-  justify-content: space-evenly;
-  align-items: center;
-  padding: 0 10em;
+.start-choices {
+	height: 50%;
+	width: 100%;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	/* padding: 0 10em; */
 }
 
-.start-choice{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.start-choice {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 .start-choice span {
-  font-family: 'SF Fedora';
-  font-size: 28px;
-  letter-spacing: 5px;
+	font-family: "SF Fedora";
+	font-size: 1.5em;
+	/* letter-spacing: 5px; */
 }
 
+/* .start-paper {
+	align-self: flex-start;
+} */
 
-.start-paper {
-  align-self: flex-start;
+.start-choice .start-img {
+	/* width: 200px; */
+	/* height: 200px; */
+	width: 100px;
+	height: 100px;
+	background-color: #f4f4f4;
+	border: 1px solid black;
+	border-radius: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 2em;
 }
 
-.start-choice .start-img{
-  width: 200px;
-  height: 200px;
-  background-color: #f4f4f4;
-  border: 1px solid black;
-  border-radius: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 2em;
+.start-img img {
+	width: 90%;
 }
 
-.start-img img{
-  width: 90%;
+.start-ui .start-game-btn {
+	border: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 15px;
+	background-color: #903b33;
+	cursor: pointer;
 }
 
-.start-ui .start-game-btn{
-  border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 15px;
-  background-color: #903B33;
-  cursor: pointer;
+.start-ui .start-game-btn:hover {
+	background-color: #b6362a;
 }
 
-.start-ui .start-game-btn:hover{
-  background-color: #b6362a;
+.start-ui .start-game-btn span {
+	font-family: "Arya";
+	font-weight: bold;
+	font-size: 30px;
+	padding: 0.5em 1em;
+	color: #f4f4f4;
 }
-
-.start-ui .start-game-btn span{
-  font-family: 'Arya';
-  font-weight: bold;
-  font-size: 30px;
-  padding: 0.5em 1em;
-  color: #f4f4f4;
-}
-
 
 /* ############################## MAIN GAME ########################### */
 
-.main-game{
-  height: 100%;
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: hidden;
-  max-width: 1440px;
+.main-game {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+	/* overflow: hidden; */
+	max-width: 1440px;
 }
 
-.border{
-  border: 1px solid black;
+.border {
+	border: 1px solid black;
 }
 
 .exit-reset-btn-group {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5em;
-  align-self: flex-end;
-  margin: 1em 0;
-  width: 80%;
-  max-width: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5em;
+	margin: 1em 0;
+	width: 80%;
+	max-width: 100px;
 }
 
 .quit-btn,
 .reset-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding:0.5em;
-  border: 1px solid rgba(0,0,0,0.1);
-  background-color: rgba(51,144,105,1);
-  border-radius: 5px;
-  min-height: 42px;
-  min-width: 42px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0.5em;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	background-color: rgba(51, 144, 105, 1);
+	border-radius: 5px;
+	min-height: 42px;
+	min-width: 42px;
 }
 
-.quit-btn{
-  background-color: rgb(214, 44, 28);
+.quit-btn {
+	background-color: rgb(214, 44, 28);
 }
-.quit-btn:hover{
-  background-color: rgba(255,55,36,1)
+.quit-btn:hover {
+	background-color: rgba(255, 55, 36, 1);
 }
 
-.reset-btn:hover{
-  background-color: rgb(56, 167, 120);
+.reset-btn:hover {
+	background-color: rgb(56, 167, 120);
 }
 .quit-btn img,
 .reset-btn img {
-  width: 80%;
+	width: 80%;
 }
 
-.display{
-  display: flex;
-  align-items: center;
-  gap: 4em;
-  margin-bottom: 1.5em;
+.display {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.5em;
+	margin-bottom: 0.5em;
 }
 
-.display__announcer{
-  min-height: 200px;
-  width: 100%;
-  border-radius: 15px;
-  border: 1px solid rgba(0,0,0,0.0.0.5);
-  background-color: rgba(0,0,0,0.25);
-  display: flex;
-  flex-direction: column;
-  justify-self: center;
-  align-items: center;
-  backdrop-filter: blur(10px);
+.display__announcer {
+	min-height: 150px;
+	width: 100%;
+	border-radius: 15px;
+	border: 1px solid rgba(0, 0, 0, 0.5);
+	background-color: rgba(0, 0, 0, 0.25);
+	display: flex;
+	flex-direction: column;
+	justify-self: center;
+	align-items: center;
+	backdrop-filter: blur(10px);
+	padding: 2em 0.5em 0 0.5em;
 }
 
-.display__announcer p{
-  font-family: 'Arya';
-  font-size: 30px;
+.display__announcer p {
+	font-family: "Arya";
+	font-size: 1.3em;
+	line-height: 1;
 }
 
-
-.display__comp-choice-group, 
-.display__human-choice-group{
-  padding-top: 1em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  background-color: #f4f4f4;
-  width: 350px;
-  height: 450px;
-  border-radius: 15px;
+.display__comp-choice-group,
+.display__human-choice-group {
+	padding-top: 2em;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
+	background-color: #f4f4f4;
+	/* width: 350px; */
+	/* height: 450px; */
+	border-radius: 15px;
+	max-width: 70%;
+	max-height: 200px;
 }
 
-.display__human-choice-group::before, 
-.display__comp-choice-group::before{
-  content: 'You';
-  font-family: 'Arya';
-  font-weight: bold;
-  font-size: 48px;
-  position: absolute;
-  top: 0.5em;
-  line-height: 0;
+.display__human-choice-group::before,
+.display__comp-choice-group::before {
+	content: "You";
+	font-family: "Arya";
+	font-weight: bold;
+	font-size: 2em;
+	position: absolute;
+	top: 0.5em;
+	line-height: 0;
 }
 
-.display__comp-choice-group::before{
-  content: 'Computer'
+.display__comp-choice-group::before {
+	content: "Computer";
 }
 
-.card_choice{
-  width: 350px;
-  height: 480px;
-  
-  background-image: none;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  margin-bottom: 0.5em;
+.card_choice {
+	border: 1px solid black;
+	width: 360px;
+	height: 480px;
+
+	background-image: none;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin-bottom: 0.5em;
 }
 
-.score{
-  font-family: 'Arya';
-  font-weight: bold;
-  font-size: 48px;
-  color: #424242;
-  align-self: flex-end;
-  margin-right: 0.5em;
+.score {
+	font-family: "Arya";
+	font-weight: bold;
+	font-size: 2em;
+	color: #424242;
+	align-self: flex-end;
+	margin-right: 0.5em;
 }
 
 /* Main Game Buttons */
 
-.button{
-  background-color: #903B33;
-  border: none;
-  padding: 1em;
-  border-radius: 5px;
+.button {
+	background-color: #903b33;
+	border: none;
+	padding: 1em;
+	border-radius: 5px;
 }
 
-.button:hover{
-  background-color: #b6362a;
+.button:hover {
+	background-color: #b6362a;
 }
 
 .button span {
-  font-family: 'Arya';
-  font-weight: bold;
-  font-size: 20px;
-  letter-spacing: 2px;
-  color: #f4f4f4;
-
+	font-family: "Arya";
+	font-weight: bold;
+	font-size: 1em;
+	letter-spacing: 2px;
+	color: #f4f4f4;
 }
 
-.button.choice{
-  min-width: 150px;
+.button.choice {
+	min-width: 80px;
 }
 
-.choice-btns{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1em;
-  position: absolute;
-  bottom: 1em;
-  left: 0;
-  right: 0;
+.choice-btns {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 1em;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
 }
-.choices{
-  width: 80%;
-  display: flex;
-  gap: 2em;
-  margin-bottom: 0.5em;
-  position: relative;
+.choices {
+	width: 80%;
+	display: flex;
+	gap: 2em;
+	margin-bottom: 0.5em;
+	position: relative;
 }
-
-
 
 /* ################################## MODALS ############################### */
 
-.modal-bg{
-  position:fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0s opacity 0.5s;
+.modal-bg {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility 0s opacity 0.5s;
 }
 
-.modal-bg.modal-active{
-  visibility: visible;
-  opacity: 1;
+.modal-bg.modal-active {
+	visibility: visible;
+	opacity: 1;
 }
 
-.modal{
-  background-color: #f4f4f4;
-  width: 50%;
-  height: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  padding-top: 3em;
-  border-radius: 10px;
+.modal {
+	background-color: #f4f4f4;
+	width: 90%;
+	height: 50%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	padding: 2em 1em;
+	border-radius: 10px;
 }
 
 .modal span {
-  font-family: 'Arya';
-  font-size: 24px;
+	font-family: "Arya";
+	font-size: 1.5em;
+	line-height: 1.2;
 }
 
-.modal span:nth-child(3){
-  font-family: 'SF Fedora';
-  font-size: 48px;
-  margin: 1.5em 0;
+.modal span:nth-child(1) {
+	margin-bottom: 3em;
+	text-align: center;
 }
 
-.modal .modal-btns{
-  display: flex;
-  gap: 4em;
+.modal span:nth-child(2) {
+	text-align: center;
+	margin-bottom: 0.5em;
+}
+.modal span:nth-child(3) {
+	font-family: "SF Fedora";
+	font-size: 2em;
+	text-align: center;
+	margin-bottom: 3em;
 }
 
-.modal-btns button{
-  border: none;
-  background-color: #903b33;
-  color: #f4f4f4;
-  border-radius: 5px;
-  padding: 0.5em 1.5em;
+.modal .modal-btns {
+	display: flex;
+	align-self: center;
+	justify-content: center;
+	gap: 2em;
 }
 
-.modal-btns button:hover{
-  background-color: #b6362a;
+.modal-btns button {
+	border: none;
+	background-color: #903b33;
+	color: #f4f4f4;
+	border-radius: 5px;
+	padding: 1em 1.5em;
 }
 
-.modal-thanks .modal{
-  justify-content: center;
-  align-items: center;
+.modal-btns button:hover {
+	background-color: #b6362a;
+}
+
+.modal-thanks .modal {
+	justify-content: center;
+	align-items: center;
 }
 
 .modal-thanks span {
-  font-family: 'SF Fedora';
-  font-size: 48px;
+	font-family: "SF Fedora";
+	font-size: 48px;
 }
 
-.modal-quit{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.modal-thanks .modal span {
+	margin-bottom: 0;
+}
+
+.modal-quit {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 .modal-quit .modal,
-.modal-reset .modal{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+.modal-reset .modal {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
 }
 
 .modal-quit .modal > span,
-.modal-reset .modal > span{
-  font-family: 'Arya';
-  font-size: 40px;
+.modal-reset .modal > span {
+	font-family: "Arya";
+	font-size: 40px;
 }
 
 .modal-quit .confirm-btns,
-.modal-reset .confirm-btns{
-  display: flex;
-  gap: 2em
+.modal-reset .confirm-btns {
+	display: flex;
+	gap: 2em;
 }
 .modal-quit button,
-.modal-reset button{
-  background-color: #903B33;
-  border: none;
-  padding: 0.5em 1em;
-  border-radius: 5px;
-  min-width: 100px;
-  color: #f4f4f4;
+.modal-reset button {
+	background-color: #903b33;
+	border: none;
+	padding: 0.5em 1em;
+	border-radius: 5px;
+	min-width: 100px;
+	color: #f4f4f4;
 }
 
 .modal-quit button:hover,
-.modal-reset button:hover{
-  background-color: #b6362a;
+.modal-reset button:hover {
+	background-color: #b6362a;
 }
 
 /*  */
 .hidden {
-  display: none !important;
+	display: none !important;
 }
 
-button span{
-  pointer-events: none  ;
+button span {
+	pointer-events: none;
+}
+
+@media screen and (min-width: 576px) {
+	.start-ui .game-title {
+		font-size: 2.5em;
+		margin-bottom: 1em;
+	}
+	.start-choice .start-img {
+		width: 150px;
+		height: 150px;
+	}
+
+	.start-choice span {
+		font-size: 2em;
+	}
+
+	.main-game {
+		justify-content: center;
+	}
+
+	.exit-reset-btn-group {
+		align-self: flex-end;
+	}
+
+	.display {
+		flex-direction: row;
+		margin: 2em 0;
+	}
+
+	.display__comp-choice-group,
+	.display__human-choice-group {
+		max-width: 250px;
+		height: 300px;
+		max-height: unset;
+		margin-bottom: 1em;
+	}
+
+	.display__announcer {
+		min-height: 250px;
+		padding-top: 4em;
+	}
+
+	.display__announcer p {
+		font-size: 1.75em;
+	}
+
+	.card_choice {
+		width: 250px;
+		height: 500px;
+	}
+
+	.choices {
+		width: 100%;
+	}
+	.choice-btns {
+		justify-content: center;
+	}
+
+	.modal {
+		max-width: 540px;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.main-game {
+		width: 100%;
+		max-width: 720px;
+	}
+
+	.display {
+		gap: 2.5em;
+	}
+	.display__comp-choice-group,
+	.display__human-choice-group {
+		height: 400px;
+		margin-bottom: 1em;
+	}
+
+	.display__announcer p {
+		font-size: 2em;
+	}
+}
+
+@media screen and (min-width: 992px) {
+	.main-game {
+		max-width: 960px;
+	}
+	.start-ui .game-title {
+		margin-bottom: 2em;
+	}
+	.display {
+		gap: 10em;
+	}
+}
+
+@media screen and (min-width: 1200px) {
+	.main-game {
+		max-width: 1140px;
+	}
+	.start-ui .game-title {
+		font-size: 3em;
+	}
+	.start-choice .start-img {
+		width: 200px;
+		height: 200px;
+	}
+
+	.start-choice span {
+		font-size: 2.5em;
+	}
+
+	.start-choice.start-paper {
+		align-self: flex-start;
+	}
+}
+
+@media screen and (min-width: 1400px) {
+	.container {
+		max-width: 1320px;
+	}
 }
