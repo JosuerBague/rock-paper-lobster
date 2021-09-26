@@ -140,7 +140,6 @@ html {
 
 .main-game {
 	height: 100%;
-	/* width: 80%; */
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -230,8 +229,8 @@ html {
 	/* width: 350px; */
 	/* height: 450px; */
 	border-radius: 15px;
-	max-height: 200px;
 	max-width: 70%;
+	max-height: 200px;
 }
 
 .display__human-choice-group::before,
@@ -250,8 +249,9 @@ html {
 }
 
 .card_choice {
-	width: 100%;
-	/* height: 480px; */
+	border: 1px solid black;
+	width: 360px;
+	height: 480px;
 
 	background-image: none;
 	background-size: contain;
@@ -336,30 +336,42 @@ html {
 
 .modal {
 	background-color: #f4f4f4;
-	width: 50%;
+	width: 90%;
 	height: 50%;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	align-items: center;
-	padding-top: 3em;
+	padding: 2em 1em;
 	border-radius: 10px;
 }
 
 .modal span {
 	font-family: "Arya";
-	font-size: 24px;
+	font-size: 1.5em;
+	line-height: 1.2;
 }
 
+.modal span:nth-child(1) {
+	margin-bottom: 3em;
+	text-align: center;
+}
+
+.modal span:nth-child(2) {
+	text-align: center;
+	margin-bottom: 0.5em;
+}
 .modal span:nth-child(3) {
 	font-family: "SF Fedora";
-	font-size: 48px;
-	margin: 1.5em 0;
+	font-size: 2em;
+	text-align: center;
+	margin-bottom: 3em;
 }
 
 .modal .modal-btns {
 	display: flex;
-	gap: 4em;
+	align-self: center;
+	justify-content: center;
+	gap: 2em;
 }
 
 .modal-btns button {
@@ -367,7 +379,7 @@ html {
 	background-color: #903b33;
 	color: #f4f4f4;
 	border-radius: 5px;
-	padding: 0.5em 1.5em;
+	padding: 1em 1.5em;
 }
 
 .modal-btns button:hover {
@@ -382,6 +394,10 @@ html {
 .modal-thanks span {
 	font-family: "SF Fedora";
 	font-size: 48px;
+}
+
+.modal-thanks .modal span {
+	margin-bottom: 0;
 }
 
 .modal-quit {
@@ -434,10 +450,6 @@ button span {
 }
 
 @media screen and (min-width: 576px) {
-	.container {
-		max-width: 540px;
-	}
-
 	.start-ui .game-title {
 		font-size: 2.5em;
 		margin-bottom: 1em;
@@ -451,34 +463,87 @@ button span {
 		font-size: 2em;
 	}
 
+	.main-game {
+		justify-content: center;
+	}
+
+	.exit-reset-btn-group {
+		align-self: flex-end;
+	}
+
 	.display {
 		flex-direction: row;
+		margin: 2em 0;
 	}
 
 	.display__comp-choice-group,
 	.display__human-choice-group {
 		max-width: 250px;
-		height: 450px;
+		height: 300px;
+		max-height: unset;
+		margin-bottom: 1em;
+	}
+
+	.display__announcer {
+		min-height: 250px;
+		padding-top: 4em;
+	}
+
+	.display__announcer p {
+		font-size: 1.75em;
+	}
+
+	.card_choice {
+		width: 250px;
+		height: 500px;
+	}
+
+	.choices {
+		width: 100%;
+	}
+	.choice-btns {
+		justify-content: center;
+	}
+
+	.modal {
+		max-width: 540px;
 	}
 }
 
 @media screen and (min-width: 768px) {
-	.container {
+	.main-game {
+		width: 100%;
 		max-width: 720px;
+	}
+
+	.display {
+		gap: 2.5em;
+	}
+	.display__comp-choice-group,
+	.display__human-choice-group {
+		height: 400px;
+		margin-bottom: 1em;
+	}
+
+	.display__announcer p {
+		font-size: 2em;
 	}
 }
 
 @media screen and (min-width: 992px) {
-	.container {
+	.main-game {
 		max-width: 960px;
 	}
 	.start-ui .game-title {
 		margin-bottom: 2em;
 	}
+	.display {
+		gap: 10em;
+	}
 }
 
 @media screen and (min-width: 1200px) {
-	.container {
+	.main-game {
 		max-width: 1140px;
 	}
 	.start-ui .game-title {
