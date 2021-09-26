@@ -539,6 +539,19 @@ button span {
 	.display {
 		gap: 10em;
 	}
+
+	.choice-btns {
+		gap: 4em;
+	}
+
+	.button.choice {
+		width: 130px;
+		padding: 2em;
+	}
+
+	.button.choice span {
+		font-size: 1.5em;
+	}
 }
 
 @media screen and (min-width: 1200px) {

@@ -1,46 +1,106 @@
 
+
+
+
+
 // #Start Game Btn
   const startGameBtn = document.querySelector('#start-game-btn');
   startGameBtn.addEventListener('click', startGame);
 
   function startGame(){
-    const startUI = document.querySelector('#start-ui');
-    const mainGame = document.querySelector('#main-game');
+    const startUI = document.querySelector('#start-ui'),
+          mainGame = document.querySelector('#main-game'),
+          audioStart = document.querySelector('#game-start');
 
     startUI.classList.toggle('hidden');
     mainGame.classList.toggle('hidden');
+    audioStart.play();
   }
 
-// #ResetGameBtn -> circular arrow with green bg
   const resetBtn = document.querySelector('#reset-btn');
+  resetBtn.addEventListener('click', function(){
+    const modalReset = document.querySelector('#modal-reset'),
+          audioBtnClicked = document.querySelector('#btn-clicked');
 
-  resetBtn.addEventListener('click', resetGame);
+    modalReset.classList.toggle('modal-active');
+    audioBtnClicked.play();
+  })
 
   function resetGame(){
-    const modalReset = document.querySelector('#modal-reset');
-    modalReset.classList.toggle('modal-active');
-  };
+    const startUI = document.querySelector('#start-ui');
+    const mainGame = document.querySelector('#main-game');
+    const modalThanks = document.querySelector('#modal-thanks');
 
-// #DeclineReset -> found in modal-reset
-  const declineResetBtn = document.querySelector('#reset-no');
-  declineResetBtn.addEventListener('click', declineReset);
+    modalThanks.classList.toggle('modal-active');
+    startUI.classList.toggle('hidden');
+    mainGame.classList.toggle('hidden');
+    reset();
+  }
+
   
-  function declineReset(){
-    const modalReset = document.querySelector('#modal-reset');
-    modalReset.classList.toggle('modal-active');
-  };
 
-// #ConfirmReset -> found in modal-reset
+// #Main Game UI Variables
+  // Displayers
+  const announcer = document.querySelector('#display__announcer');
+
+  // Human
+  
+
+  // Comp
+  
+
+  // Choices & Btns
+  const choiceBtns = document.querySelectorAll('.choice');
+  // const newGameBtn = document.querySelector("#new-game-btn");
+
+  choiceBtns.forEach(choice => choice.addEventListener('click', playRPS));
+  // newGameBtn.addEventListener('click', newGame);
+
+
+  const quitBtn = document.querySelector('#quit-btn');
+  quitBtn.addEventListener('click', function quitGame(){
+    const modalQuit = document.querySelector('#modal-quit'),
+          audioBtnClicked = document.querySelector('#btn-clicked');
+
+    modalQuit.classList.toggle('modal-active');
+    audioBtnClicked.play();
+  });
+  
+  const confirmExitBtn = document.querySelector('#quit-yes');
+  confirmExitBtn.addEventListener('click', function confirmExit(){
+
+    const modalQuit = document.querySelector('#modal-quit'),
+          modalThanks = document.querySelector('#modal-thanks'),
+          audioBtnClicked = document.querySelector('#btn-clicked');
+
+
+    modalQuit.classList.toggle('modal-active');
+    modalThanks.classList.toggle('modal-active');
+    audioBtnClicked.play();
+
+    setTimeout(resetGame, 3000);
+  });
+
   const confirmResetBtn = document.querySelector('#reset-yes');
-  confirmResetBtn.addEventListener('click',confirmReset)
-  
-  function confirmReset(){
-    let modalReset = document.querySelector('#modal-reset');
-    modalReset.classList.toggle('modal-active');
-    resetScore();
-  };
+  confirmResetBtn.addEventListener('click',function(){
+    const parentModal = this.parentElement.parentElement.parentElement,
+        audioBtnClicked = document.querySelector('#btn-clicked');
 
-  function resetScore(){
+    parentModal.classList.toggle('modal-active');
+    audioBtnClicked.play();
+    reset();
+  })
+
+  const declineResetBtn = document.querySelector('#reset-no');
+  declineResetBtn.addEventListener('click', function(){
+    const modalReset = document.querySelector('#modal-reset'),
+          audioBtnClicked = document.querySelector('#btn-clicked');
+
+    modalReset.classList.toggle('modal-active');
+    audioBtnClicked.play();
+  })
+
+  function reset(){
     const startHuman = document.createElement('span'),
           startComp = document.createElement('span')
           human = document.querySelector('#human-score'),
@@ -60,91 +120,73 @@
     comp.appendChild(startComp);
   }
 
-// #QuitBtn -> X button with red bg
-  const quitBtn = document.querySelector('#quit-btn');
-  quitBtn.addEventListener('click', quitGame)
-  
-  function quitGame(){
-    const modalQuit = document.querySelector('#modal-quit');
-    modalQuit.classList.toggle('modal-active');
-  };
 
-// #Decline Quit -> found in modal-quit.
-  const declineExitBtn = document.querySelector('.quit-no');
-  declineExitBtn.addEventListener('click', declineQuit);
-
-  function declineQuit(){
-    const modalQuit = document.querySelector('#modal-quit');
-    modalQuit.classList.toggle('modal-active');
-  }
-
-// #Confirm Quit -> Btn found in modal-quit
-  const confirmExitBtn = document.querySelector('#quit-yes');
-  confirmExitBtn.addEventListener('click', confirmQuit);
-
-  function confirmQuit(){
-    const modalQuit = document.querySelector('#modal-quit');
-    const modalThanks = document.querySelector('#modal-thanks');
-
-    modalQuit.classList.toggle('modal-active');
-    modalThanks.classList.toggle('modal-active');
-
-    setTimeout(resetAll, 3000);
-  };
-
-  function resetAll(){
-    const startUI = document.querySelector('#start-ui');
-    const mainGame = document.querySelector('#main-game');
-    const modalThanks = document.querySelector('#modal-thanks');
-
-    modalThanks.classList.toggle('modal-active');
-    startUI.classList.toggle('hidden');
-    mainGame.classList.toggle('hidden');
-    resetScore();
-  }
-
-// #Play Again btns -> found in win & lose modals. Resets game.
-  const playAgainBtns = document.querySelectorAll('.play-again');
-  playAgainBtns.forEach(playAgain => playAgain.addEventListener('click', function playAgain(){
-    let parentModal = this.parentElement.parentElement.parentElement;
-    parentModal.classList.toggle('modal-active');
-    resetScore();
-  }));
-
-// #Exit game btns -> found in win & lose modals. Brings user to startUI state.
-  const exitGameBtns = document.querySelectorAll('.exit-game');
-
-  exitGameBtns.forEach(exitGame => exitGame.addEventListener('click', function exitGame(){
-    const parentModal = this.parentElement.parentElement.parentElement;
-    const modalThanks = document.querySelector('#modal-thanks');
-
-    parentModal.classList.toggle('modal-active');
-    modalThanks.classList.toggle('modal-active');
-
-    setTimeout(resetAll, 3000);
-  }));
-
-// 
 
   
-  const announcer = document.querySelector('#display__announcer');
-  // Choices & Btns
-  
-  const choiceBtns = document.querySelectorAll('.choice');
-  choiceBtns.forEach(choice => choice.addEventListener('click', playRPS));
-
 // #Modals
   const modalLose = document.querySelector('#modal-lose');
+  
+  const play = document.querySelector('#win-play-again');
+  const parent = play.parentElement.parentElement.parentElement;
+  console.log(parent);
 
   // Modal Btns
-  
-  
+  const playAgainBtns = document.querySelectorAll('.play-again');
 
+  playAgainBtns.forEach(button => button.addEventListener('click', playAgain));
+  function playAgain(){
+    const modalWin = document.querySelector('#modal-win'),
+          audioWinGame = document.querySelector('#win-game'),
+          audioLoseGame = document.querySelector('#lose-game'),
+          audioBtnClicked = document.querySelector('#btn-clicked');
+
+
+    let parentModal = this.parentElement.parentElement.parentElement;
+    parentModal.classList.toggle('modal-active');
+    if(parentModal === modalWin){
+      audioWinGame.currentTime = 0;
+      audioWinGame.pause();
+    } else {
+      audioLoseGame.currentTime = 0;
+      audioLoseGame.pause();
+    }
+    audioBtnClicked.play();
+    reset();
+  };
+
+  const exitGameBtns = document.querySelectorAll('.exit-game');
+
+  exitGameBtns.forEach(exitGame => exitGame.addEventListener('click', function(){
+    const parentModal = this.parentElement.parentElement.parentElement,
+          modalThanks = document.querySelector('#modal-thanks'),
+          audioBtnClicked = document.querySelector('#btn-clicked');
+
+
+    parentModal.classList.toggle('modal-active');
+    modalThanks.classList.toggle('modal-active');
+    audioBtnClicked.play();
+    setTimeout(resetGame, 3000);
+  }));
+
+  const declineExitBtn = document.querySelector('.quit-no');
+  declineExitBtn.addEventListener('click', declineExit);
+
+  function declineExit(){
+    const modalQuit = document.querySelector('#modal-quit'),
+          audioBtnClicked = document.querySelector('#btn-clicked');
+
+    modalQuit.classList.toggle('modal-active');
+    audioBtnClicked.play();
+    return
+  }
 
 modalWin = document.querySelector('#modal-win');
 
 
 function gameEnder(){
+  const audioWinGame = document.querySelector('#win-game'),
+        audioLoseGame = document.querySelector('#lose-game');
+  
   const playerScoreEnd = parseInt(document.querySelector('#human-score')
                          .firstElementChild.innerText);
   const compScoreEnd = parseInt(document.querySelector('#comp-score')
@@ -154,7 +196,14 @@ function gameEnder(){
   if(playerScoreEnd === 5 || compScoreEnd === 5){
     let modalName = (playerScoreEnd > compScoreEnd) ? modalWin : modalLose;
     modalName.classList.toggle('modal-active');
-    console.log('It works')
+    if(modalName === modalWin){
+      audioWinGame.currentTime = 0;
+      audioWinGame.play();
+    } else {
+      audioLoseGame.currentTime = 0;
+      audioLoseGame.play();
+    }
+    console.log('It works');
   }
 }
 
@@ -219,18 +268,19 @@ function titleCase(text){
 
 // Plays one round of rock paper lobster
 function playRPS(e){
-
-  choiceBtns.forEach(choice => choice.disabled = true);
-
   const player = e.target.value,
         computer = computerPlay(),
-        humanCardBg = document.querySelector('#human-choice__card'),
-        compCardBg = document.querySelector('#comp-choice__card'),
-        humanCardParent = document.querySelector('#display__human-choice-group'),
-        compCardParent = document.querySelector('#display__comp-choice-group');    
+        humanCard = document.querySelector('#human-choice__card'),
+        compCard = document.querySelector('#comp-choice__card'),
+        playerDisplay = document.querySelector('#display__human-choice-group'),
+        compDisplay = document.querySelector('#display__comp-choice-group'),
+        audioBtnClicked = document.querySelector('#btn-clicked');
 
   let result;
-  
+
+  choiceBtns.forEach(choice => choice.disabled = true);
+  audioBtnClicked.play();
+
   if(player === computer){
     result = 'draw'
   } else if(player === 'rock'){
@@ -241,7 +291,7 @@ function playRPS(e){
     computer === 'paper' ? result = 'win' : result ='lose'
   }
 
-  humanCardBg.style.backgroundImage = `url(assets/img/${player}f.png)`;
+  humanCard.style.backgroundImage = `url(assets/img/${player}f.png)`;
   displayCompChoice(computer);
 
 
@@ -253,23 +303,29 @@ function playRPS(e){
           "url(assets/img/lobsterf.png)", 
           "url(assets/img/rockf.png)",
           "url(assets/img/paperf.png)", 
-          "url(assets/img/lobsterf.png)"]
+          "url(assets/img/lobsterf.png)"];
     
+    const audioRoll = document.querySelector('#roll');
     let roll;
+
 
     setTimeout(startRoll, 500);
     
     function startRoll(){
       roll = setInterval(randomize, 90);
       setTimeout(clearRandomize, 4000);
+      audioRoll.currentTime = 0;
+      audioRoll.play();
     }
     function randomize(){
       let random = Math.floor(Math.random() * imgURL.length);
-      compCardBg.style.backgroundImage = imgURL[random];
+      compCard.style.backgroundImage = imgURL[random];
     }
 
     function clearRandomize(){
       clearInterval(roll);
+      audioRoll.pause();
+      audioBtnClicked.play();
       compBgImage(choice);
       setTimeout(displayResults, 1000, player, computer, result)
       setTimeout(clearAll, 3000);
@@ -277,67 +333,80 @@ function playRPS(e){
     }
     
     function clearAll(){
-      humanCardBg.style.backgroundImage = '';
-      compCardBg.style.backgroundImage = '';
+      humanCard.style.backgroundImage = '';
+      compCard.style.backgroundImage = '';
       announcer.removeChild(announcer.firstChild);
-      humanCardParent.style.boxShadow = '';
-      compCardParent.style.boxShadow = '';
+      playerDisplay.style.boxShadow = '';
+      compDisplay.style.boxShadow = '';
       choiceBtns.forEach(choice => choice.disabled = false);
     }
-
+  
     function compBgImage(choice){
       console.log('choice: ', choice)
-        compCardBg.style.backgroundImage = `url(assets/img/${choice}f.png)`;
+        compCard.style.backgroundImage = `url(assets/img/${choice}f.png)`;
     }
     
-  } /* End display comp choice*/
+  }
 
+
+  // Display's round result
   function displayResults(player, computer, result){
   
-    let announcement = document.createElement('p'),
+  let announcement = document.createElement('p'),
       titlePlayer = titleCase(player),
       titleComputer = titleCase(computer);
 
-    if(result === 'draw'){
-
-      announcement.textContent = "It's a draw!";
-
-      if(announcer.hasChildNodes()){
-        announcer.removeChild(announcer.firstChild);
-      }
-
-      announcer.appendChild(announcement);
-      highlightWinner(result);
-      return
-    }
-
-    announcement.textContent = `${titlePlayer} beats ${titleComputer}! You win!`;
-
-    if(result === 'lose'){
-    announcement.textContent = `${titlePlayer} succumbs to ${titleComputer}! You lose...`;
-    }
-
+  if(result === 'draw'){
+    announcement.textContent = "It's a draw!";
     if(announcer.hasChildNodes()){
       announcer.removeChild(announcer.firstChild);
     }
     announcer.appendChild(announcement);
     highlightWinner(result);
+    return
+  }
 
-  } /* End display results */
+  announcement.textContent = `${titlePlayer} beats ${titleComputer}! You win!`;
+
+  if(result === 'lose'){
+    announcement.textContent = `${titlePlayer} succumbs to ${titleComputer}! You lose...`;
+  }
+  if(announcer.hasChildNodes()){
+    announcer.removeChild(announcer.firstChild);
+  }
+  announcer.appendChild(announcement);
+  highlightWinner(result);
+  }
 
   function highlightWinner(result){
+    const audioRoundWin = document.querySelector('#round-won'),
+          audioRoundLost = document.querySelector('#round-lost'),
+          audioRoundDraw = document.querySelector('#round-draw');
 
     if(result === 'draw'){
-      humanCardParent.style.boxShadow = '0 0 10px blue';
-      compCardParent.style.boxShadow = '0 0 10px blue';
+      playerDisplay.style.boxShadow = '0 0 10px blue';
+      compDisplay.style.boxShadow = '0 0 10px blue';
+      audioRoundDraw.currentTime = 0;
+      audioRoundDraw.play();
+
     }else if(result === 'win'){
-      humanCardParent.style.boxShadow = '0 0 10px green';
-      compCardParent.style.boxShadow= '0 0 10px red';
+      playerDisplay.style.boxShadow = '0 0 10px green';
+      compDisplay.style.boxShadow= '0 0 10px red';
+      audioRoundWin.currentTime = 0;
+      audioRoundWin.play();
+
     } else {
-      humanCardParent.style.boxShadow = '0 0 10px red';
-      compCardParent.style.boxShadow = '0 0 10px green';
+      playerDisplay.style.boxShadow = '0 0 10px red';
+      compDisplay.style.boxShadow = '0 0 10px green';
+      audioRoundLost.currentTime = 0;
+      audioRoundLost.play();
     }
   }
-} /* End of RPS*/
+
+
+  // displayRoundResult(playerSelection, computerSelection, result);
+  // playerBgImage(playerSelection);
+  return result;
+}
 
                   

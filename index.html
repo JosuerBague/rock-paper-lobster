@@ -70,7 +70,7 @@
       
 
       <div id="choices" class="choices">
-        <div id="display__announcer" class="display__announcer"></div>
+        <div id="display__announcer" class="display__announcer"><p>First to 5 Wins!</p></div>
         <div id="choice-btns" class="choice-btns">
           <button id="rock-choice-btn" class="button choice" value="rock">
             <span>Rock</span>
@@ -101,7 +101,7 @@
       </div>
       <!--  -->
 
-      <div id="modal-lose" class="modal-lose modal-bg ">
+      <div id="modal-lose" class="modal-lose modal-bg">
         <div class="modal">
           <span>You Lose. Hurry, call the Terminator!</span>
           <span>You are granted the title of:</span>
@@ -151,8 +151,19 @@
           </div>
         </div>
       </div>
+      <!--  -->
     </div>
   </div>
+
+  <audio src="assets/audio/mixkit-flock-of-wild-geese-20.ogg" id="lose-game"></audio>
+  <audio src="assets/audio/mixkit-small-group-cheer-and-applause-518.ogg" id="win-game"></audio>
+  <audio src="assets/audio/mixkit-video-game-treasure-2066.ogg" id="round-won"></audio>
+  <audio src="assets/audio/mixkit-player-losing-or-failing-2042.ogg" id="round-lost"></audio>
+  <audio src="assets/audio/cricket.ogg" id="round-draw"></audio>
+  <audio src="assets/audio/mixkit-retro-game-notification-212.ogg" id="game-start"></audio>
+  <audio src="assets/audio/roll.ogg" id="roll"></audio>
+  <audio src="assets/audio/zapsplat_multimedia_button_click_005_53866.ogg" id="btn-clicked"></audio>
+  <!--  -->
   <script src="assets/js/main.js"></script>
 </body>
 </html>
