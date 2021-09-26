@@ -8,18 +8,24 @@
   startGameBtn.addEventListener('click', startGame);
 
   function startGame(){
-    const startUI = document.querySelector('#start-ui');
-    const mainGame = document.querySelector('#main-game');
+    const startUI = document.querySelector('#start-ui'),
+          mainGame = document.querySelector('#main-game'),
+          audioStart = document.querySelector('#game-start');
 
     startUI.classList.toggle('hidden');
     mainGame.classList.toggle('hidden');
+    audioStart.play();
   }
 
   const resetBtn = document.querySelector('#reset-btn');
   resetBtn.addEventListener('click', function(){
-    const modalReset = document.querySelector('#modal-reset');
+    const modalReset = document.querySelector('#modal-reset'),
+          audioBtnClicked = document.querySelector('#btn-clicked');
+
     modalReset.classList.toggle('modal-active');
+    audioBtnClicked.play();
   })
+
   function resetGame(){
     const startUI = document.querySelector('#start-ui');
     const mainGame = document.querySelector('#main-game');
@@ -53,33 +59,45 @@
 
   const quitBtn = document.querySelector('#quit-btn');
   quitBtn.addEventListener('click', function quitGame(){
-    const modalQuit = document.querySelector('#modal-quit');
+    const modalQuit = document.querySelector('#modal-quit'),
+          audioBtnClicked = document.querySelector('#btn-clicked');
+
     modalQuit.classList.toggle('modal-active');
+    audioBtnClicked.play();
   });
   
   const confirmExitBtn = document.querySelector('#quit-yes');
   confirmExitBtn.addEventListener('click', function confirmExit(){
 
-    const modalQuit = document.querySelector('#modal-quit');
-    const modalThanks = document.querySelector('#modal-thanks');
+    const modalQuit = document.querySelector('#modal-quit'),
+          modalThanks = document.querySelector('#modal-thanks'),
+          audioBtnClicked = document.querySelector('#btn-clicked');
+
 
     modalQuit.classList.toggle('modal-active');
     modalThanks.classList.toggle('modal-active');
+    audioBtnClicked.play();
 
     setTimeout(resetGame, 3000);
   });
 
   const confirmResetBtn = document.querySelector('#reset-yes');
   confirmResetBtn.addEventListener('click',function(){
-    let parentModal = this.parentElement.parentElement.parentElement;
+    const parentModal = this.parentElement.parentElement.parentElement,
+        audioBtnClicked = document.querySelector('#btn-clicked');
+
     parentModal.classList.toggle('modal-active');
+    audioBtnClicked.play();
     reset();
   })
 
   const declineResetBtn = document.querySelector('#reset-no');
   declineResetBtn.addEventListener('click', function(){
-    const modalReset = document.querySelector('#modal-reset');
+    const modalReset = document.querySelector('#modal-reset'),
+          audioBtnClicked = document.querySelector('#btn-clicked');
+
     modalReset.classList.toggle('modal-active');
+    audioBtnClicked.play();
   })
 
   function reset(){
@@ -115,30 +133,50 @@
   // Modal Btns
   const playAgainBtns = document.querySelectorAll('.play-again');
 
-  playAgainBtns.forEach(playAgain => playAgain.addEventListener('click', function(){
+  playAgainBtns.forEach(button => button.addEventListener('click', playAgain));
+  function playAgain(){
+    const modalWin = document.querySelector('#modal-win'),
+          audioWinGame = document.querySelector('#win-game'),
+          audioLoseGame = document.querySelector('#lose-game'),
+          audioBtnClicked = document.querySelector('#btn-clicked');
+
+
     let parentModal = this.parentElement.parentElement.parentElement;
     parentModal.classList.toggle('modal-active');
+    if(parentModal === modalWin){
+      audioWinGame.currentTime = 0;
+      audioWinGame.pause();
+    } else {
+      audioLoseGame.currentTime = 0;
+      audioLoseGame.pause();
+    }
+    audioBtnClicked.play();
     reset();
-  }))
+  };
+
   const exitGameBtns = document.querySelectorAll('.exit-game');
 
   exitGameBtns.forEach(exitGame => exitGame.addEventListener('click', function(){
-    const parentModal = this.parentElement.parentElement.parentElement;
-    const modalThanks = document.querySelector('#modal-thanks');
+    const parentModal = this.parentElement.parentElement.parentElement,
+          modalThanks = document.querySelector('#modal-thanks'),
+          audioBtnClicked = document.querySelector('#btn-clicked');
+
 
     parentModal.classList.toggle('modal-active');
     modalThanks.classList.toggle('modal-active');
-
+    audioBtnClicked.play();
     setTimeout(resetGame, 3000);
   }));
-  const declineExitBtn = document.querySelector('.quit-no');
 
- 
+  const declineExitBtn = document.querySelector('.quit-no');
   declineExitBtn.addEventListener('click', declineExit);
 
   function declineExit(){
-    const modalQuit = document.querySelector('#modal-quit');
+    const modalQuit = document.querySelector('#modal-quit'),
+          audioBtnClicked = document.querySelector('#btn-clicked');
+
     modalQuit.classList.toggle('modal-active');
+    audioBtnClicked.play();
     return
   }
 
@@ -146,6 +184,9 @@ modalWin = document.querySelector('#modal-win');
 
 
 function gameEnder(){
+  const audioWinGame = document.querySelector('#win-game'),
+        audioLoseGame = document.querySelector('#lose-game');
+  
   const playerScoreEnd = parseInt(document.querySelector('#human-score')
                          .firstElementChild.innerText);
   const compScoreEnd = parseInt(document.querySelector('#comp-score')
@@ -155,7 +196,14 @@ function gameEnder(){
   if(playerScoreEnd === 5 || compScoreEnd === 5){
     let modalName = (playerScoreEnd > compScoreEnd) ? modalWin : modalLose;
     modalName.classList.toggle('modal-active');
-    console.log('It works')
+    if(modalName === modalWin){
+      audioWinGame.currentTime = 0;
+      audioWinGame.play();
+    } else {
+      audioLoseGame.currentTime = 0;
+      audioLoseGame.play();
+    }
+    console.log('It works');
   }
 }
 
@@ -220,20 +268,19 @@ function titleCase(text){
 
 // Plays one round of rock paper lobster
 function playRPS(e){
-
-  choiceBtns.forEach(choice => choice.disabled = true);
-
   const player = e.target.value,
         computer = computerPlay(),
         humanCard = document.querySelector('#human-choice__card'),
         compCard = document.querySelector('#comp-choice__card'),
         playerDisplay = document.querySelector('#display__human-choice-group'),
-        compDisplay = document.querySelector('#display__comp-choice-group');    
+        compDisplay = document.querySelector('#display__comp-choice-group'),
+        audioBtnClicked = document.querySelector('#btn-clicked');
 
   let result;
-  console.log('player: ', player);
-  console.log('computer: ', computer);
-  
+
+  choiceBtns.forEach(choice => choice.disabled = true);
+  audioBtnClicked.play();
+
   if(player === computer){
     result = 'draw'
   } else if(player === 'rock'){
@@ -245,6 +292,8 @@ function playRPS(e){
   }
 
   humanCard.style.backgroundImage = `url(assets/img/${player}f.png)`;
+  displayCompChoice(computer);
+
 
   function displayCompChoice(choice) {
 
@@ -254,15 +303,19 @@ function playRPS(e){
           "url(assets/img/lobsterf.png)", 
           "url(assets/img/rockf.png)",
           "url(assets/img/paperf.png)", 
-          "url(assets/img/lobsterf.png)"]
+          "url(assets/img/lobsterf.png)"];
     
+    const audioRoll = document.querySelector('#roll');
     let roll;
+
 
     setTimeout(startRoll, 500);
     
     function startRoll(){
       roll = setInterval(randomize, 90);
       setTimeout(clearRandomize, 4000);
+      audioRoll.currentTime = 0;
+      audioRoll.play();
     }
     function randomize(){
       let random = Math.floor(Math.random() * imgURL.length);
@@ -271,6 +324,8 @@ function playRPS(e){
 
     function clearRandomize(){
       clearInterval(roll);
+      audioRoll.pause();
+      audioBtnClicked.play();
       compBgImage(choice);
       setTimeout(displayResults, 1000, player, computer, result)
       setTimeout(clearAll, 3000);
@@ -293,7 +348,6 @@ function playRPS(e){
     
   }
 
-  displayCompChoice(computer);
 
   // Display's round result
   function displayResults(player, computer, result){
@@ -325,16 +379,27 @@ function playRPS(e){
   }
 
   function highlightWinner(result){
+    const audioRoundWin = document.querySelector('#round-won'),
+          audioRoundLost = document.querySelector('#round-lost'),
+          audioRoundDraw = document.querySelector('#round-draw');
 
     if(result === 'draw'){
       playerDisplay.style.boxShadow = '0 0 10px blue';
       compDisplay.style.boxShadow = '0 0 10px blue';
+      audioRoundDraw.currentTime = 0;
+      audioRoundDraw.play();
+
     }else if(result === 'win'){
       playerDisplay.style.boxShadow = '0 0 10px green';
       compDisplay.style.boxShadow= '0 0 10px red';
+      audioRoundWin.currentTime = 0;
+      audioRoundWin.play();
+
     } else {
       playerDisplay.style.boxShadow = '0 0 10px red';
       compDisplay.style.boxShadow = '0 0 10px green';
+      audioRoundLost.currentTime = 0;
+      audioRoundLost.play();
     }
   }
 
