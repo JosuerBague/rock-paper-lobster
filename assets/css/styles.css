@@ -17,11 +17,11 @@ html {
 
 #container {
 	background-image: url(../img/pexels-tirachard-kumtanom-347139.jpg);
+	background-attachment: fixed;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: left bottom;
 	min-height: 100vh;
-	height: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
