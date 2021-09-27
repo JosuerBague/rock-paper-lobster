@@ -141,7 +141,7 @@
           audioBtnClicked = document.querySelector('#btn-clicked');
 
 
-    let parentModal = this.parentElement.parentElement.parentElement;
+    const parentModal = this.parentElement.parentElement.parentElement;
     parentModal.classList.toggle('modal-active');
     if(parentModal === modalWin){
       audioWinGame.currentTime = 0;
@@ -158,8 +158,8 @@
 
   exitGameBtns.forEach(exitGame => exitGame.addEventListener('click', function(){
     const parentModal = this.parentElement.parentElement.parentElement,
-          modalThanks = document.querySelector('#modal-thanks'),
-          audioBtnClicked = document.querySelector('#btn-clicked');
+        modalThanks = document.querySelector('#modal-thanks'),
+        audioBtnClicked = document.querySelector('#btn-clicked');
 
 
     parentModal.classList.toggle('modal-active');
@@ -409,4 +409,179 @@ function playRPS(e){
   return result;
 }
 
-                  
+const muteSoundFX = document.querySelector('#sound-fx-checkbox'),
+      muteMusic = document.querySelector('#music-checkbox');
+
+muteSoundFX.addEventListener('change', function(){
+  const allSoundFx = document.querySelectorAll('.sound-fx'),
+        fxSlider = document.querySelector('#sound-fx-slider');
+        
+  if(muteSoundFX.checked === true){
+    allSoundFx.forEach(soundFx => {
+      soundFx.volume = fxSlider.value / 100;
+      soundFx.muted = false
+    });
+  } else {
+    allSoundFx.forEach(soundFx => soundFx.muted = true);
+  }
+})
+
+muteMusic.addEventListener('change', function(){
+  const gameMusic = document.querySelector('#game-music'),
+        musicSlider = document.querySelector('#music-slider');
+  
+  if(muteMusic.checked === true){
+    console.log(musicSlider.value);
+    gameMusic.volume = musicSlider.value / 100;
+    gameMusic.play();
+    gameMusic.muted = false;
+  } else {
+    gameMusic.muted = true;
+  }
+})
+
+const sliderSoundFx = document.querySelector('#sound-fx-slider'),
+      sliderMusic = document.querySelector('#music-slider');
+
+sliderSoundFx.addEventListener('input', function(){
+  const allSoundFx = document.querySelectorAll('.sound-fx'),
+        volSoundFx = document.querySelector('#sound-fx-slider').value,
+        audioBtnClicked = document.querySelector('#btn-clicked'),
+        fxTitle = document.createElement('span'),
+        fxVal = document.createElement('span'),
+        fxSliderLabel = document.querySelector('#label-fx-slider');
+
+  fxTitle.textContent = "Sound Fx:";
+  fxVal.textContent = volSoundFx;
+
+  allSoundFx.forEach(soundFx => {
+    soundFx.volume = volSoundFx / 100
+  });
+
+  while(fxSliderLabel.hasChildNodes()){
+    fxSliderLabel.removeChild(fxSliderLabel.firstChild);
+  }
+  
+  fxSliderLabel.appendChild(fxTitle);
+  fxSliderLabel.appendChild(fxVal);
+  audioBtnClicked.play();
+
+})
+
+sliderMusic.addEventListener('input', function(){
+  const gameMusic = document.querySelector('#game-music'),
+        volMusic = document.querySelector('#music-slider').value,
+        musicTitle = document.createElement('span'),
+        musicVal = document.createElement('span'),
+        musicSliderLabel = document.querySelector('#label-music-slider');
+
+  gameMusic.volume = volMusic / 100;
+
+  musicTitle.textContent = 'Music:';  
+  musicVal.textContent = volMusic;
+
+  while(musicSliderLabel.hasChildNodes()){
+    musicSliderLabel.removeChild(musicSliderLabel.firstChild);
+  }
+
+  musicSliderLabel.appendChild(musicTitle);
+  musicSliderLabel.appendChild(musicVal);
+  console.log(musicTitle, musicVal)
+})
+
+const saveSettings = document.querySelector('#save');
+saveSettings.addEventListener('click', function(){
+  const modalSettings = document.querySelector('#modal-settings'),
+        audioBtnClicked = document.querySelector('#btn-clicked');
+
+
+  modalSettings.classList.toggle('modal-active');
+  audioBtnClicked.play();
+})
+
+const settingsBtn = document.querySelector('#settings');
+settingsBtn.addEventListener('click', function(){
+  const modalSettings = document.querySelector('#modal-settings'),
+        audioBtnClicked = document.querySelector('#btn-clicked');
+
+  modalSettings.classList.toggle('modal-active');
+  audioBtnClicked.play();
+})
+
+const gameMusic = document.querySelector('#game-music');
+console.log(gameMusic.hasPlayed);
+
+const soundYes = document.querySelector("#sound-yes"),
+      soundNo = document.querySelector("#sound-no");
+
+soundYes.addEventListener('click', function(){
+  const modalSound = document.querySelector('#modal-enable-sounds'),
+        gameMusic = document.querySelector('#game-music'),
+        audioBtnClicked = document.querySelector('#btn-clicked'),
+        allSoundFx = document.querySelectorAll('.sound-fx')
+
+  allSoundFx.forEach(soundFx => soundFx.volume = 0.2);
+
+  audioBtnClicked.play();
+  modalSound.classList.toggle('modal-active');
+  gameMusic.volume = 0.2;
+  gameMusic.currentTime = 0;
+  gameMusic.play();
+});
+
+soundNo.addEventListener('click', function(){
+  const modalSound = document.querySelector('#modal-enable-sounds'),
+        gameMusic = document.querySelector('#game-music'),
+        soundChecks = document.querySelectorAll("input[type='checkbox']"),
+        soundSliders = document.querySelectorAll("input[type='range']"),
+        fxSliderLabel = document.querySelector('#label-fx-slider'),
+        musicSliderLabel = document.querySelector('#label-music-slider'),
+        fxSlider = document.querySelector('#sound-fx-slider'),
+        musicSlider = document.querySelector('#music-slider'),
+        allSoundFx = document.querySelectorAll('.sound-fx');
+
+  let fxTitle = document.createElement('span'),
+      fxVal = document.createElement('span'),
+      musicTitle = document.createElement('span'),
+      musicVal = document.createElement('span');
+
+  fxTitle.classList.add('slider-title');
+  musicTitle.classList.add('slider-title');
+  fxVal.classList.add('slider-val');
+  musicVal.classList.add('slider-val');
+
+  fxTitle.textContent = "Sound Fx:";
+  musicTitle.textContent = "Music:";
+
+  allSoundFx.forEach(soundFx => soundFx.muted = true);
+  gameMusic.muted = true;
+
+  soundChecks.forEach(checkbox => checkbox.removeAttribute('checked'));
+  soundSliders.forEach(slider => slider.setAttribute('value', 1));
+
+  fxVal.textContent = fxSlider.value;
+  musicVal.textContent = musicSlider.value;
+
+  while (fxSliderLabel.hasChildNodes()){
+    fxSliderLabel.removeChild(fxSliderLabel.firstChild);
+  }
+
+  while(musicSliderLabel.hasChildNodes()){
+    musicSliderLabel.removeChild(musicSliderLabel.firstChild);
+  }
+
+  fxSliderLabel.appendChild(fxTitle);
+  fxSliderLabel.appendChild(fxVal);
+  musicSliderLabel.appendChild(musicTitle);
+  musicSliderLabel.appendChild(musicVal);
+
+
+  modalSound.classList.toggle('modal-active');
+});
+
+
+setTimeout(function(){
+  const modalEnable = document.querySelector('#modal-enable-sounds');
+
+  modalEnable.classList.toggle('modal-active');
+}, 500);

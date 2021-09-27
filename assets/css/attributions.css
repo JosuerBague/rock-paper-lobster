@@ -1,0 +1,102 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	min-height: 100vh;
+	height: 100%;
+}
+
+html {
+	background-color: lightblue;
+	min-height: 100vh;
+	height: 100%;
+}
+
+.container {
+	background-image: url(../img/pexels-tirachard-kumtanom-347139.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: left bottom;
+	background-attachment: fixed;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.glass-card {
+	width: 90%;
+	background: rgba(255, 255, 255, 0.7);
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(9.5px);
+	-webkit-backdrop-filter: blur(9.5px);
+	border-radius: 10px;
+	border: 1px solid rgba(255, 255, 255, 0.18);
+	padding: 1.5em;
+}
+.header h1 {
+	text-align: center;
+	margin-bottom: 0.25em;
+}
+
+.header p {
+	font-size: 1.2em;
+	margin-bottom: 1em;
+}
+.glass-card .items {
+	display: grid;
+	grid-template-columns: 1fr;
+}
+
+.attrib-item {
+	display: flex;
+	flex-direction: column;
+	max-width: 310px;
+	margin: 0 auto 2em auto;
+}
+
+audio {
+	margin-bottom: 10px;
+}
+figure {
+	width: 100%;
+}
+figure span {
+	display: block;
+}
+figure img {
+	max-width: 200px;
+	width: 100%;
+}
+
+abbr {
+	text-decoration: none;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+@media screen and (min-width: 820px) {
+	.glass-card {
+		width: 80%;
+	}
+	.glass-card .items {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+@media screen and (min-width: 1200px) {
+	.glass-card .items {
+		grid-template-columns: 1fr 1fr 1fr;
+	}
+}

@@ -7,11 +7,6 @@
 body {
 	min-height: 100vh;
 	height: 100%;
-	/* display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex: 1 1 auto; */
 }
 
 html {
@@ -31,6 +26,7 @@ html {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	position: relative;
 }
 
 /* Fonts */
@@ -49,6 +45,23 @@ html {
 	font-family: "Arya";
 	font-weight: bold;
 	src: url(../fonts/Arya/Arya-Bold.ttf);
+}
+
+.attribs {
+	position: absolute;
+	bottom: 5%;
+	right: 5%;
+	font-family: "Arya";
+	font-size: 1.5em;
+	font-style: bold;
+	letter-spacing: 2px;
+	text-decoration: none;
+	color: black;
+	backdrop-filter: 2px;
+}
+
+.attribs:hover {
+	text-decoration: underline;
 }
 
 /* startUI */
@@ -152,7 +165,7 @@ html {
 	border: 1px solid black;
 }
 
-.exit-reset-btn-group {
+.menu-btns-group {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -163,7 +176,8 @@ html {
 }
 
 .quit-btn,
-.reset-btn {
+.reset-btn,
+.settings-btn {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -185,8 +199,16 @@ html {
 .reset-btn:hover {
 	background-color: rgb(56, 167, 120);
 }
+
+.settings-btn {
+	background-color: rgb(140, 140, 140);
+}
+.settings-btn:hover {
+	background-color: rgb(120, 120, 120);
+}
 .quit-btn img,
-.reset-btn img {
+.reset-btn img,
+.settings-btn img {
 	width: 80%;
 }
 
@@ -313,6 +335,7 @@ html {
 
 /* ################################## MODALS ############################### */
 
+/* modal - general settings */
 .modal-bg {
 	position: fixed;
 	top: 0;
@@ -325,7 +348,7 @@ html {
 	align-items: center;
 	visibility: hidden;
 	opacity: 0;
-	transition: visibility 0s opacity 0.5s;
+	transition: visibility 0s, opacity 0.5s;
 }
 
 .modal-bg.modal-active {
@@ -339,31 +362,10 @@ html {
 	height: 50%;
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-start;
+	justify-content: center;
+	align-items: center;
 	padding: 2em 1em;
 	border-radius: 10px;
-}
-
-.modal span {
-	font-family: "Arya";
-	font-size: 1.5em;
-	line-height: 1.2;
-}
-
-.modal span:nth-child(1) {
-	margin-bottom: 3em;
-	text-align: center;
-}
-
-.modal span:nth-child(2) {
-	text-align: center;
-	margin-bottom: 0.5em;
-}
-.modal span:nth-child(3) {
-	font-family: "SF Fedora";
-	font-size: 2em;
-	text-align: center;
-	margin-bottom: 3em;
 }
 
 .modal .modal-btns {
@@ -373,7 +375,8 @@ html {
 	gap: 2em;
 }
 
-.modal-btns button {
+.modal-btns button,
+.save {
 	border: none;
 	background-color: #903b33;
 	color: #f4f4f4;
@@ -381,62 +384,193 @@ html {
 	padding: 1em 1.5em;
 }
 
-.modal-btns button:hover {
+.modal-btns button:hover,
+.save:hover {
 	background-color: #b6362a;
 }
 
-.modal-thanks .modal {
-	justify-content: center;
-	align-items: center;
+/* modal-win + modal-lose */
+.modal-win .modal > span,
+.modal-lose .modal > span {
+	font-family: "Arya";
+	font-size: 1.2em;
+	margin-bottom: 3em;
+	text-align: center;
 }
 
-.modal-thanks span {
-	font-family: "SF Fedora";
-	font-size: 48px;
-}
-
-.modal-thanks .modal span {
+.modal-win .modal > span:nth-child(1),
+.modal-lose .modal > span:nth-child(1) {
 	margin-bottom: 0;
 }
 
-.modal-quit {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+.modal-win .modal .modal-title,
+.modal-lose .modal .modal-title {
+	font-family: "SF Fedora";
+	font-size: 2em;
 }
 
+/* modal-thanks */
+.modal-thanks span {
+	font-family: "SF Fedora";
+	font-size: 2em;
+}
+
+/* modal-quit */
 .modal-quit .modal,
 .modal-reset .modal {
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
+	padding: 3em;
+	text-align: center;
 }
 
 .modal-quit .modal > span,
 .modal-reset .modal > span {
-	font-family: "Arya";
-	font-size: 40px;
+	font-family: "SF Fedora";
+	font-size: 1.5em;
+	margin-bottom: 1em;
 }
 
-.modal-quit .confirm-btns,
-.modal-reset .confirm-btns {
+/* modal-reset */
+
+/* modal-settings */
+.modal-settings .modal {
+	align-items: unset;
+	gap: 1.5em;
+	padding: 2em;
+}
+
+.modal-settings label,
+.modal-settings .label {
+	font-family: "SF Fedora";
+	font-size: 1em; /* 1.5em*/
+	width: 100%;
 	display: flex;
-	gap: 2em;
-}
-.modal-quit button,
-.modal-reset button {
-	background-color: #903b33;
-	border: none;
-	padding: 0.5em 1em;
-	border-radius: 5px;
-	min-width: 100px;
-	color: #f4f4f4;
+	align-items: center;
 }
 
-.modal-quit button:hover,
-.modal-reset button:hover {
-	background-color: #b6362a;
+.modal-settings label span,
+.modal-settings .label span {
+	display: inline-block;
+	margin: 0 0 0 10px;
+	font-size: 1em;
+}
+
+.modal-settings label[for="music-checkbox"] span {
+	margin: 0 0 0 37px;
+}
+
+.modal-settings .save {
+	margin-left: auto;
+	order: 2;
+}
+
+.modal-settings .checkbox-group:nth-child(2) {
+	order: 3;
+}
+
+.modal-settings .volume-slider {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 100%;
+	height: 15px;
+	border-radius: 5px;
+	background: #d3d3d3;
+	outline: none;
+	opacity: 0.7;
+	-webkit-transition: 0.2s;
+	transition: opacity 0.2s;
+}
+
+.modal-settings .volume-slider:hover {
+	opacity: 1;
+}
+
+.modal-settings .volume-slider::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	background: #903b33;
+	cursor: pointer;
+}
+
+.modal-settings .volume-slider::-moz-range-thumb {
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	background: #903b33;
+	cursor: pointer;
+}
+
+.modal-settings input[type="checkbox"] {
+	display: none;
+}
+
+.modal-settings label[for*="checkbox"] {
+	margin-right: 20px;
+}
+.modal-settings .checkboxes {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.modal-settings .checkbox-group label {
+	gap: 0.5em;
+}
+
+.modal-settings .checkmark {
+	display: inline-block;
+	background-color: #e3e3e3;
+	border-radius: 5px;
+	width: 25px;
+	height: 25px;
+	position: relative;
+}
+
+.modal-settings .checkmark:hover {
+	background-color: #d3d3d3;
+}
+
+.modal-settings input:checked ~ .checkmark {
+	background-color: #2196f3;
+}
+
+.modal-settings .checkmark:after {
+	content: "";
+	position: absolute;
+	display: none;
+}
+
+.modal-settings input:checked ~ .checkmark:after {
+	display: inline-block;
+}
+
+.modal-settings .checkmark:after {
+	left: 8px;
+	top: 4px;
+	width: 5px;
+	height: 10px;
+	border: solid white;
+	border-width: 0 3px 3px 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+/* modal-enable-sounds */
+.modal-enable-sounds .question {
+	font-family: "SF Fedora";
+	font-size: 2em;
+	margin-bottom: 1.5em;
+}
+
+.modal-enable-sounds .modal-btns {
+	margin-bottom: 0.5em;
+}
+
+.modal-enable-sounds .tip {
+	font-size: 1em;
+	color: rgb(90, 90, 90);
 }
 
 /*  */
@@ -446,6 +580,35 @@ html {
 
 button span {
 	pointer-events: none;
+}
+
+@media screen and (min-width: 440px) {
+	.modal-settings .save {
+		margin-left: unset;
+		order: 4;
+		margin-top: 1em;
+	}
+
+	.modal-settings label[for="music-checkbox"] span {
+		margin: 0 0 0 10px;
+	}
+	/* modal-settings */
+	.modal-settings label,
+	.modal-settings .label {
+		font-size: 1.5em;
+	}
+
+	.modal-settings .volume-slider::-webkit-slider-thumb {
+		width: 25px;
+		height: 25px;
+	}
+}
+
+@media screen and (min-width: 508px) {
+	.modal-settings .save {
+		margin-left: auto;
+		margin-top: 0;
+	}
 }
 
 @media screen and (min-width: 576px) {
@@ -466,7 +629,7 @@ button span {
 		justify-content: center;
 	}
 
-	.exit-reset-btn-group {
+	.menu-btns-group {
 		align-self: flex-end;
 	}
 
@@ -507,6 +670,29 @@ button span {
 	.modal {
 		max-width: 540px;
 	}
+	.modal-quit .modal > span,
+	.modal-reset .modal > span {
+		font-size: 2em;
+		margin-bottom: 1em;
+	}
+
+	/* modal-win + modal-lose */
+	.modal-win .modal > span,
+	.modal-lose .modal > span {
+		font-size: 1.5em;
+		margin-bottom: 2em;
+		text-align: center;
+	}
+
+	.modal-win .modal .modal-title,
+	.modal-lose .modal .modal-title {
+		font-family: "SF Fedora";
+		font-size: 2.5em;
+	}
+	/* modal-thanks */
+	.modal-thanks span {
+		font-size: 3em;
+	}
 }
 
 @media screen and (min-width: 768px) {
@@ -545,8 +731,7 @@ button span {
 	}
 
 	.button.choice {
-		width: 130px;
-		padding: 2em;
+		min-width: 150px;
 	}
 
 	.button.choice span {
@@ -576,7 +761,4 @@ button span {
 }
 
 @media screen and (min-width: 1400px) {
-	.container {
-		max-width: 1320px;
-	}
 }
