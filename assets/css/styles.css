@@ -22,11 +22,11 @@ html {
 	background-repeat: no-repeat;
 	background-position: left bottom;
 	min-height: 100vh;
+	height: 100%;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: space-evenly;
 	align-items: center;
-	position: relative;
 }
 
 /* Fonts */
@@ -48,9 +48,9 @@ html {
 }
 
 .attribs {
-	position: absolute;
+	/* position: absolute;
 	bottom: 5%;
-	right: 5%;
+	right: 5%; */
 	font-family: "Arya";
 	font-size: 1.5em;
 	font-style: bold;
@@ -135,6 +135,7 @@ html {
 	border-radius: 15px;
 	background-color: #903b33;
 	cursor: pointer;
+	margin-top: 2em;
 }
 
 .start-ui .start-game-btn:hover {
@@ -696,6 +697,9 @@ button span {
 }
 
 @media screen and (min-width: 768px) {
+	#container {
+		height: auto;
+	}
 	.main-game {
 		width: 100%;
 		max-width: 720px;
