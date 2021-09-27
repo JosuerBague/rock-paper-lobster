@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rock-Paper-Scissors</title>
+  <title>Rock Paper Lobster</title>
 
     <link rel="stylesheet" href="assets/css/styles.css">
  
 </head>  
 <body>
   <div id="container">
-
+    <a href="attributions.html" id="attributions" target="_blank" class="attribs">Attributions</a>
     <div id="start-ui" class="start-ui">
       <h1 class="game-title">The Bizzarre World of</h1>
       <!--  -->
@@ -42,11 +42,30 @@
       <button id="start-game-btn" class="start-game-btn">
         <span>Start Game</span>
       </button>
+
+      <div id="modal-enable-sounds" class="modal-enable-sounds modal-bg">
+        <div class="modal">
+          <span class="question">Enable sounds?</span>
+          <div class="modal-btns enable-sound-btns">
+            <button id="sound-yes" class="sound-yes">
+              <span>Enable Sound</span>
+            </button>
+            <button id="sound-no" class="sound-no">
+              <span>No Sound</span>
+            </button>
+          </div>
+          <span class="tip">Tip: You can change sound settings later.</span>
+        </div>
+      </div>
+      <!--  -->
     </div>
     <!--  -->
 
     <div id="main-game" class="main-game hidden">
-      <div class="exit-reset-btn-group">
+      <div class="menu-btns-group">
+        <button id="settings" class="settings-btn">
+          <img src="assets/img/settings_white_24dp.svg" alt="Settings Button">
+        </button>
         <button id="reset-btn" class="reset-btn">
           <img src="assets/img/reset.svg" alt="Reset Game Button">
         </button>
@@ -88,7 +107,7 @@
         <div class="modal">
           <span>Congratulations! You beat the Computer!</span>
           <span>You claim the title of</span>
-          <span>King of Bizarre</span>
+          <span class="modal-title">King of Bizarre</span>
           <div class="modal-btns">
             <button id="win-play-again" class="play-again">
               <span>Play Again</span>
@@ -105,7 +124,7 @@
         <div class="modal">
           <span>You Lose. Hurry, call the Terminator!</span>
           <span>You are granted the title of:</span>
-          <span>Normie</span>
+          <span class="modal-title">Normie</span>
           <div class="modal-btns">
             <button id="lose-play-again" class="play-again">
               <span>Play Again</span>
@@ -124,10 +143,10 @@
         </div>
       </div>
 
-      <div id="modal-quit" class="modal-quit modal-bg ">
+      <div id="modal-quit" class="modal-quit modal-bg">
         <div class="modal">
           <span>Are you sure you want to quit?</span>
-          <div class="confirm-btns">
+          <div class="modal-btns confirm-btns">
             <button id="quit-yes" class="quit-yes">
               <span>Yes</span>
             </button>
@@ -140,7 +159,7 @@
       <div id="modal-reset" class="modal-reset modal-bg">
         <div class="modal">
           <span>Reset the game?</span>
-          <div class="confirm-btns">
+          <div class="modal-btns confirm-btns">
             <button id="reset-yes" class="reset-yes">
               <span>Yes</span>
             </button>
@@ -152,17 +171,61 @@
         </div>
       </div>
       <!--  -->
+      <div id="modal-settings" class="modal-settings modal-bg">
+        <div class="modal">
+          <!--  -->
+          <div>
+            <div id="label-fx-slider" class="label">
+              <span>Sound Fx:</span>
+              <span>20</span>
+            </div>
+            <input type="range" min="1" max="100" value="20" id="sound-fx-slider" class="volume-slider">
+          </div>
+          <!--  -->
+          <div>
+            <div id="label-music-slider" class="label">
+              <span>Music:</span>
+              <span>20</span>
+            </div>
+            <input type="range" min="1" max="100" value="20" id="music-slider" class="volume-slider">
+          </div>
+          <!--  -->
+          <div class="checkboxes">
+            <div class="checkbox-group">
+              <label for="sound-fx-checkbox">Sound-Fx
+                <input type="checkbox" id="sound-fx-checkbox" checked>
+                <span class="checkmark"></span>
+              </label>
+              
+            </div>  
+            <!--  -->
+            <div class="checkbox-group">
+              <label for="music-checkbox">Music
+                <input type="checkbox" id="music-checkbox" checked>
+                <span class="checkmark"></span>
+              </label>
+            </div>
+            <!--  -->
+            <button id="save" class="save">
+              <span>Save</span>
+            </button>
+          </div>
+          <!--  -->
+        </div>
+      </div>
+      <!--  -->
     </div>
   </div>
 
-  <audio src="assets/audio/mixkit-flock-of-wild-geese-20.ogg" id="lose-game"></audio>
-  <audio src="assets/audio/mixkit-small-group-cheer-and-applause-518.ogg" id="win-game"></audio>
-  <audio src="assets/audio/mixkit-video-game-treasure-2066.ogg" id="round-won"></audio>
-  <audio src="assets/audio/mixkit-player-losing-or-failing-2042.ogg" id="round-lost"></audio>
-  <audio src="assets/audio/cricket.ogg" id="round-draw"></audio>
-  <audio src="assets/audio/mixkit-retro-game-notification-212.ogg" id="game-start"></audio>
-  <audio src="assets/audio/roll.ogg" id="roll"></audio>
-  <audio src="assets/audio/zapsplat_multimedia_button_click_005_53866.ogg" id="btn-clicked"></audio>
+  <audio src="assets/audio/121511__damonmensch__cricket-sound.ogg" id="round-draw" class="sound-fx"></audio>
+  <audio id="game-music" src="assets/audio/bensound-jazzyfrenchy.ogg" loop></audio>
+  <audio src="assets/audio/mixkit-flock-of-wild-geese-20.ogg" id="lose-game" class="sound-fx"></audio>
+  <audio src="assets/audio/mixkit-player-losing-or-failing-2042.ogg" id="round-lost" class="sound-fx"></audio>
+  <audio src="assets/audio/mixkit-retro-game-notification-212.ogg" id="game-start" class="sound-fx"></audio>
+  <audio src="assets/audio/mixkit-small-group-cheer-and-applause-518.ogg" id="win-game" class="sound-fx"></audio>
+  <audio src="assets/audio/mixkit-video-game-treasure-2066.ogg" id="round-won" class="sound-fx"></audio>
+  <audio src="assets/audio/roll.ogg" id="roll" class="sound-fx"></audio>
+  <audio src="assets/audio/zapsplat_multimedia_button_click_005_53866.ogg" id="btn-clicked" class="sound-fx"></audio>
   <!--  -->
   <script src="assets/js/main.js"></script>
 </body>
