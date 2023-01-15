@@ -1,4 +1,6 @@
-# Rock vs Paper vs Lobster
+<div text-align="center">
+Rock vs Paper vs Lobster
+</div>
 
 This is my version of the rock-paper-scissors project for [The Odin Project](https://www.theodinproject.com). The goal is to create a rock-paper-scissors with a focus on DOM manipulation and event listeners.
 
