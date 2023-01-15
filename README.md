@@ -26,16 +26,20 @@ Paper-kun is passionate about his craft. He constantly is on the lookout for a g
 
 Meant to be Rocky's next menu, Lobster accepted his fate. He was ready to become the next 5 star Michelin dish. All of his affairs were in place, patiently he waited till Rocky would transform him into the best dish. Unfortunately, Rocky and Paper-kun's fight has delayed this fate. Felt robbed, he joins the fray, trying to remove Paper-kun from the picture.
 
+### Gameplay
 
-The game is straight-forward rock-paper-scissor except I threw in a lobster. I decided to go with an arcade game feel for this project.
+<img src="https://github.com/JoshDagat/readme-images/blob/main/rps_start.jpg"/>
 
-I had a lot of fun working on this project.
+The game is straight-forward rock-paper-scissor except I threw in a lobster. The player has three buttons to choose from after which the computer random rolls till it chooses its fighter.
 
-Check out the project here: [Rock Paper Lobster](https://github.com/JoshDagat/rock-paper-lobster)
+First to five wins the game.
 
-## Getting Started
+### Changing Settings ⚙️
 
----
+Adjusting the settings is pretty straightforward. On the top right there should be a ⚙️ icon. Click to open and the settings modal should pop-up.
+From there you can adjust sound and music volume. You will also find the attributions there.
 
-I wanted to
-![game start image]()
+<img src="https://github.com/JoshDagat/readme-images/blob/main/settings.jpg">
+
+### Outro
+I had a lot of fun creating this project.
