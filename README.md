@@ -1,7 +1,7 @@
 <div id="header" align="center">
   <h1>Rock vs Paper vs Lobster</h1>
 </div>
-![test](https://github.com/JoshDagat/readme-images/blob/main/landing.jpg)
+<img src="https://github.com/JoshDagat/readme-images/blob/main/landing.jpg"/>
 
 
 This is my version of the rock-paper-scissors project for [The Odin Project](https://www.theodinproject.com). The goal is to create a rock-paper-scissors with a focus on DOM manipulation and event listeners.
